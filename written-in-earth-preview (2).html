@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Written in Earth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Space+Mono&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#080c14;--panel:#111927;--card:#141d2b;
+  --b:rgba(120,180,255,0.1);--bhi:rgba(120,180,255,0.22);
+  --gold:#c9a84c;--goldl:#e8c97a;
+  --text:#d4e3f5;--dim:rgba(212,227,245,0.42);--mut:rgba(212,227,245,0.2);
+  --gg:0 0 28px rgba(201,168,76,0.18);--r:4px;
+}
+body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
+.app{
+  min-height:100vh;background:var(--ink);
+  background-image:radial-gradient(ellipse 100% 50% at 50% -5%,rgba(20,50,100,0.28) 0%,transparent 65%);
+}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid var(--b);}
+.brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:.04em;}
+.brand span{color:var(--text);font-weight:400;}
+.ttag{font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;}
+.hero{text-align:center;padding:60px 24px 40px;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--gold));opacity:.35;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px;padding:7px 16px;border:1px solid rgba(201,168,76,.2);border-radius:2px;background:rgba(201,168,76,.04);}
+.edot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:blink 2.5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.htitle{font-family:'Playfair Display',serif;font-size:clamp(48px,9vw,100px);font-weight:900;line-height:.9;color:#fff;letter-spacing:-.02em;}
+.htitle .g{color:var(--gold);}
+.htitle .it{font-style:italic;font-weight:400;}
+.hrule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto 0;opacity:.45;}
+.showcase{margin-top:32px;padding:0 24px;}
+.showcase-strip{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.stile{position:relative;width:110px;aspect-ratio:2/3;border-radius:4px;overflow:hidden;border:1px solid rgba(201,168,76,.2);flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.stile img{width:100%;height:100%;object-fit:cover;display:block;}
+.stile-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,20,.95) 0%,rgba(8,12,20,.1) 55%,transparent 100%);pointer-events:none;}
+.stile-loc{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:6px;color:var(--gold);letter-spacing:.08em;opacity:.8;padding:0 4px;line-height:1.3;}
+.isec{max-width:640px;margin:0 auto;padding:0 24px 40px;}
+.sl{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.sl::after{content:'';flex:1;height:1px;background:var(--b);}
+.iwrap{position:relative;}
+.ninput{width:100%;background:var(--panel);border:1px solid var(--bhi);border-radius:var(--r);padding:18px 72px 18px 22px;font-family:'Playfair Display',serif;font-size:28px;font-weight:700;letter-spacing:.18em;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s;text-transform:uppercase;}
+.ninput::placeholder{color:var(--mut);font-weight:400;font-style:italic;font-size:20px;letter-spacing:.05em;}
+.ninput:focus{border-color:rgba(201,168,76,.4);box-shadow:0 0 0 3px rgba(201,168,76,.06),var(--gg);}
+.cc{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:10px;color:var(--mut);}
+.ihint{margin-top:10px;font-size:11px;color:var(--mut);text-align:center;letter-spacing:.05em;font-family:'Space Mono',monospace;}
+.psec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
+.lgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.lcard{position:relative;width:88px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;cursor:pointer;border:1px solid var(--b);transition:transform .2s,border-color .2s,box-shadow .2s;background:var(--card);flex-shrink:0;}
+.lcard:hover{transform:translateY(-6px) scale(1.04);border-color:var(--gold);box-shadow:0 16px 40px rgba(0,0,0,.5),var(--gg);}
+.lcard img{width:100%;height:100%;object-fit:cover;display:block;}
+.ftile{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:rgba(255,255,255,.08);}
+.cov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,20,.92) 0%,rgba(8,12,20,.08) 52%,transparent 100%);pointer-events:none;}
+.clet{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.9);}
+.cbadge{position:absolute;top:6px;right:6px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:2px;font-family:'Space Mono',monospace;font-size:7px;color:var(--gold);padding:2px 4px;}
+.ctap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.1);opacity:0;transition:opacity .15s;font-family:'Space Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.1em;pointer-events:none;}
+.lcard:hover .ctap{opacity:1;}
+.lcard.solo:hover .ctap{opacity:0;}
+.vback{position:fixed;inset:0;background:rgba(8,12,20,.8);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;}
+.vpop{background:var(--panel);border:1px solid var(--bhi);border-radius:8px;padding:28px;max-width:520px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,.7);animation:popIn .25s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.vph{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.vpt{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;}
+.vpt span{color:var(--gold);font-style:italic;}
+.vpc{background:none;border:1px solid var(--bhi);border-radius:var(--r);color:var(--dim);font-size:16px;cursor:pointer;padding:4px 10px;}
+.vpc:hover{border-color:var(--gold);color:var(--gold);}
+.vpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;}
+.vptile{position:relative;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;}
+.vptile:hover{transform:scale(1.04);}
+.vptile.sel{border-color:var(--gold);box-shadow:var(--gg);}
+.vptile img{width:100%;height:100%;object-fit:cover;}
+.vtlbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,12,20,.95) 0%,transparent 100%);padding:18px 6px 6px;font-family:'Space Mono',monospace;font-size:7px;color:var(--dim);text-align:center;line-height:1.4;}
+.vcheck{position:absolute;top:6px;right:6px;background:var(--gold);color:var(--ink);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.vhint{margin-top:14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);text-align:center;letter-spacing:.08em;}
+.prevsec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
+.prevframe{background:var(--panel);border:1px solid var(--b);border-radius:var(--r);padding:36px 28px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.prevframe::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(120,180,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(120,180,255,.018) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.ptiles{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;}
+.ptile{position:relative;width:68px;aspect-ratio:2/3;border-radius:2px;overflow:hidden;border:1px solid rgba(201,168,76,.14);cursor:pointer;flex-shrink:0;transition:transform .15s,border-color .15s;}
+.ptile:hover{transform:scale(1.07);border-color:var(--gold);}
+.ptile img{width:100%;height:100%;object-fit:cover;}
+.pov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,20,.82) 0%,transparent 55%);pointer-events:none;}
+.pch{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.9);}
+.pempty{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--mut);text-align:center;}
+.ptag{margin-top:18px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;opacity:.65;}
+.locbar{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.lchip{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.11);border-radius:2px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:.05em;}
+.lchip strong{color:var(--gold);margin-right:5px;font-size:9px;}
+.osec{max-width:880px;margin:0 auto;padding:0 24px 60px;}
+.ptabs{display:flex;background:var(--panel);border:1px solid var(--b);border-radius:var(--r) var(--r) 0 0;border-bottom:none;overflow:hidden;}
+.ptab{flex:1;padding:14px 8px;cursor:pointer;text-align:center;transition:background .18s;border-right:1px solid var(--b);position:relative;}
+.ptab:last-child{border-right:none;}
+.ptab:hover{background:rgba(201,168,76,.04);}
+.ptab.act{background:rgba(201,168,76,.07);}
+.ptab.act::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);}
+.ticon{font-size:18px;margin-bottom:4px;}
+.tname{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
+.tdesc{font-size:9px;color:var(--dim);letter-spacing:.04em;}
+.tbadge{display:inline-block;margin-top:4px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.22);border-radius:2px;font-family:'Space Mono',monospace;font-size:7px;color:var(--gold);padding:2px 6px;letter-spacing:.1em;}
+.spanel{background:var(--panel);border:1px solid var(--b);border-radius:0 0 var(--r) var(--r);padding:20px;margin-bottom:14px;}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.scard{padding:14px 10px;border:1.5px solid var(--b);border-radius:var(--r);cursor:pointer;text-align:center;transition:border-color .18s,background .18s;}
+.scard:hover{border-color:rgba(201,168,76,.3);}
+.scard.sel{border-color:var(--gold);background:rgba(201,168,76,.06);box-shadow:var(--gg);}
+.slbl{font-family:'Space Mono',monospace;font-size:11px;color:#fff;margin-bottom:4px;letter-spacing:.05em;}
+.sprice{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--goldl);}
+.loc-toggle{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--b);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;cursor:pointer;transition:border-color .2s;}
+.loc-toggle:hover{border-color:rgba(201,168,76,.3);}
+.ttrack{width:40px;height:22px;border-radius:11px;background:rgba(120,180,255,.15);border:1px solid var(--b);position:relative;transition:background .2s;flex-shrink:0;margin-top:2px;}
+.ttrack.on{background:var(--gold);border-color:var(--gold);}
+.tthumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.ttrack.on .tthumb{transform:translateX(18px);}
+.ttext{flex:1;}
+.ttitle{display:block;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.tdescr{display:block;font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.05em;line-height:1.6;}
+.ctabtn{width:100%;padding:18px;background:var(--gold);color:var(--ink);border:none;border-radius:var(--r);font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:.07em;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;}
+.ctabtn:hover{background:var(--goldl);transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,168,76,.28);}
+.ctabtn:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none;}
+.csub{text-align:center;margin-top:12px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;}
+.foot{border-top:1px solid var(--b);padding:32px 24px;text-align:center;max-width:680px;margin:0 auto;}
+.fbrand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:10px;font-style:italic;}
+.foot p{font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);line-height:2;letter-spacing:.05em;}
+.foot a{color:var(--gold);text-decoration:none;opacity:.7;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--gold);color:var(--ink);padding:12px 28px;border-radius:var(--r);font-family:'Playfair Display',serif;font-size:14px;font-weight:700;z-index:200;transition:transform .32s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .5s ease both;}
+.fu1{animation-delay:.06s}.fu2{animation-delay:.13s}.fu3{animation-delay:.19s}.fu4{animation-delay:.25s}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+const CDN = "https://pub-79d32807b6fa419c9854b8d1d4334d0b.r2.dev/LandsatImages";
+
+const LETTER_DATA = {
+  A:[{url:`${CDN}/A/a-0-hickman-kentucky.png`,loc:"Hickman, Kentucky, USA"},{url:`${CDN}/A/a-1-farm-island-maine.png`,loc:"Farm Island, Maine, USA"},{url:`${CDN}/A/a-2-guakhmaz-azerbaijan.png`,loc:"Lake Guakhmaz, Azerbaijan"},{url:`${CDN}/A/a-3-yukon-delta-alaska.png`,loc:"Yukon River Delta, Alaska"},{url:`${CDN}/A/a-4-lake-mjosa-norway.png`,loc:"Lake Mjøsa, Norway"}],
+  B:[{url:`${CDN}/B/b-0-holla-bend-arkansas.png`,loc:"Holla Bend, Arkansas"},{url:`${CDN}/B/b-1-humaita-brazil.png`,loc:"Humaitá, Brazil"}],
+  C:[{url:`${CDN}/C/c-0-black-rock-desert-nevada.png`,loc:"Black Rock Desert, Nevada"},{url:`${CDN}/C/c-1-deception-island.png`,loc:"Deception Island, Antarctica"},{url:`${CDN}/C/c-2-false-river-louisiana.png`,loc:"False River, Louisiana"}],
+  D:[{url:`${CDN}/D/d-0-akimiski-island-canada.png`,loc:"Akimiski Island, Canada"},{url:`${CDN}/D/d-1-lake-tandou-australia.png`,loc:"Lake Tandou, Australia"}],
+  E:[{url:`${CDN}/E/e-0-firn-fjords-tibet.png`,loc:"Firn-filled Fjords, Tibet"},{url:`${CDN}/E/e-1-sea-of-okhotsk.png`,loc:"Sea of Okhotsk"},{url:`${CDN}/E/e-2-bellona-plateau.png`,loc:"Bellona Plateau"},{url:`${CDN}/E/e-3-breidamerkurjokull.png`,loc:"Breiðamerkurjökull, Iceland"}],
+  F:[{url:`${CDN}/F/f-0-mato-grosso-brazil.png`,loc:"Mato Grosso, Brazil"},{url:`${CDN}/F/f-1-kruger-south-africa.png`,loc:"Kruger National Park, South Africa"}],
+  G:[{url:`${CDN}/G/g-0-fonte-boa-amazonas.png`,loc:"Fonte Boa, Amazonas, Brazil"}],
+  H:[{url:`${CDN}/H/h-0-kyrgyzstan.png`,loc:"Southwestern Kyrgyzstan"},{url:`${CDN}/H/h-1-khorinsky-russia.png`,loc:"Khorinsky District, Russia"}],
+  I:[{url:`${CDN}/I/i-0-borgarbyggd-iceland.png`,loc:"Borgarbyggð, Iceland"},{url:`${CDN}/I/i-1-canandaigua-new-york.png`,loc:"Canandaigua Lake, New York"},{url:`${CDN}/I/i-2-etosha-namibia.png`,loc:"Etosha National Park, Namibia"},{url:`${CDN}/I/i-3-djebel-ouarkziz-morocco.png`,loc:"Djebel Ouarkziz, Morocco"},{url:`${CDN}/I/i-4-holuhraun-iceland.png`,loc:"Holuhraun Ice Field, Iceland"}],
+  J:[{url:`${CDN}/J/j-0-great-barrier-reef.png`,loc:"Great Barrier Reef, Australia"},{url:`${CDN}/J/j-1-karakaya-dam-turkey.png`,loc:"Karakaya Dam, Turkey"},{url:`${CDN}/J/j-2-lake-superior.png`,loc:"Lake Superior, North America"}],
+  K:[{url:`${CDN}/K/k-0-sirmilik-canada.png`,loc:"Sirmilik National Park, Canada"},{url:`${CDN}/K/k-1-golmud-china.png`,loc:"Golmud, China"}],
+  L:[{url:`${CDN}/L/l-0-nusantara-indonesia.png`,loc:"Nusantara, Indonesia"},{url:`${CDN}/L/l-1-xinjiang-china.png`,loc:"Xinjiang, China"},{url:`${CDN}/L/l-2-regina-canada.png`,loc:"Regina, Saskatchewan, Canada"}],
+  M:[{url:`${CDN}/M/m-0-shenandoah-virginia.png`,loc:"Shenandoah River, Virginia"},{url:`${CDN}/M/m-1-potomac-river.png`,loc:"Potomac River, USA"},{url:`${CDN}/M/m-2-tian-shan-kyrgyzstan.png`,loc:"Tian Shan Mountains, Kyrgyzstan"}],
+  N:[{url:`${CDN}/N/n-0-yapacani-bolivia.png`,loc:"Yapacaní River, Bolivia"},{url:`${CDN}/N/n-1-yapacani-bolivia-color.png`,loc:"Yapacaní River, Bolivia (false-color)"}],
+  O:[{url:`${CDN}/O/o-0-CraterLake-Oregon.png`,loc:"Crater Lake, Oregon, USA"},{url:`${CDN}/O/o-1-ManicouaganReservoir.png`,loc:"Manicouagan Reservoir, Canada"}],
+  P:[{url:`${CDN}/P/p-0-MackenzieRiverDelta-Canada.png`,loc:"Mackenzie River Delta, Canada"},{url:`${CDN}/P/p-1-RiberaltaBolivia.png`,loc:"Riberalta, Bolivia"}],
+  Q:[{url:`${CDN}/Q/q-0-LonarCrater-India.png`,loc:"Lonar Crater, India"},{url:`${CDN}/Q/q-1-MountTambora-Indonesia.png`,loc:"Mount Tambora, Indonesia"}],
+  R:[{url:`${CDN}/R/r-0-LagoMenendez-Argentina.png`,loc:"Lago Menendez, Argentina"},{url:`${CDN}/R/r-1-ProvinceofSondrio-Italy.png`,loc:"Province of Sondrio, Italy"},{url:`${CDN}/R/r-2-florida-keys.png`,loc:"Florida Keys, USA"},{url:`${CDN}/R/r-3-canyonlandsNationalPark-utah.png`,loc:"Canyonlands National Park, Utah"}],
+  S:[{url:`${CDN}/S/s-0-MackenzieRiver.png`,loc:"Mackenzie River, Canada"},{url:`${CDN}/S/s-1-nDjamena-chad.png`,loc:"N'Djamena, Chad"},{url:`${CDN}/S/s-2-RioChapare-Bolivia.png`,loc:"Rio Chapare, Bolivia"}],
+  T:[{url:`${CDN}/T/t-0-Liwa-United Arab Emirates.png`,loc:"Liwa, United Arab Emirates"},{url:`${CDN}/T/t-1-LenaRiverDelta.png`,loc:"Lena River Delta, Russia"}],
+  U:[{url:`${CDN}/U/u-0-CanyonlandsNationalPark-Utah.png`,loc:"Canyonlands National Park, Utah"},{url:`${CDN}/U/u-1-BamforthNationalWildlifeRefuge-Wyoming.png`,loc:"Bamforth Wildlife Refuge, Wyoming"}],
+  V:[{url:`${CDN}/V/v-0-CellinaandMedunaRivers-Italy.png`,loc:"Cellina and Meduna Rivers, Italy"},{url:`${CDN}/V/v-1-NewSouthWales-Australia.png`,loc:"New South Wales, Australia"},{url:`${CDN}/V/v-2-PadmaRiver-Bangladesh.png`,loc:"Padma River, Bangladesh"},{url:`${CDN}/V/v-3-Mapleton-Maine.png`,loc:"Mapleton, Maine, USA"}],
+  W:[{url:`${CDN}/W/w-0-PonoyRiver-Russia.png`,loc:"Ponoy River, Russia"},{url:`${CDN}/W/w-1-LaPrimavera-Columbia.png`,loc:"La Primavera, Colombia"}],
+  X:[{url:`${CDN}/X/x-0-WolstenholmeFjord-Greenland.png`,loc:"Wolstenholme Fjord, Greenland"},{url:`${CDN}/X/x-1-DavisStrait-Greenland.png`,loc:"Davis Strait, Greenland"},{url:`${CDN}/X/x-2-SermersooqMunicipality-Greenland.png`,loc:"Sermersooq, Greenland"}],
+  Y:[{url:`${CDN}/Y/y-0-BíobíoRiver-Chile.png`,loc:"Biobío River, Chile"},{url:`${CDN}/Y/y-1-EstuariodeVirrila-Peru.png`,loc:"Estuario de Virrila, Peru"},{url:`${CDN}/Y/y-2-tasmanGlacier-newZealand.png`,loc:"Tasman Glacier, New Zealand"}],
+  Z:[{url:`${CDN}/Z/z-0-PrimaveradoLeste-Brazil.png`,loc:"Primavera do Leste, Brazil"},{url:`${CDN}/Z/z-1-MohammedBoudiaf-Algeria.png`,loc:"Mohammed Boudiaf, Algeria"}],
+};
+
+const COLORS={A:"#1a3a5c",B:"#2d1b4e",C:"#0d3d2e",D:"#3d1a0d",E:"#1a2d3d",F:"#2d3d1a",G:"#3d2d0d",H:"#0d1a3d",I:"#3d0d2d",J:"#1a3d2d",K:"#2d0d3d",L:"#3d1a2d",M:"#0d3d1a",N:"#1a0d3d",O:"#3d2d1a",P:"#0d2d3d",Q:"#2d3d0d",R:"#3d0d1a",S:"#1a3d0d",T:"#0d1a2d",U:"#3d1a0d",V:"#2d0d1a",W:"#1a2d0d",X:"#0d3d2d",Y:"#3d0d2d",Z:"#1a0d2d"};
+
+const PRODUCTS=[
+  {id:"print",icon:"🖼️",name:"Fine Art Print",desc:"Archival paper · Ready to frame",sizes:[{id:"p1",label:'8"×24"',price:"$39"},{id:"p2",label:'12"×36"',price:"$55"},{id:"p3",label:'16"×48"',price:"$75"}]},
+  {id:"fprint",icon:"🪟",name:"Framed Art Print",desc:"Wood frame · Glass",sizes:[{id:"fp1",label:'8"×24"',price:"$79"},{id:"fp2",label:'12"×36"',price:"$109"},{id:"fp3",label:'16"×48"',price:"$139"}]},
+  {id:"canvas",icon:"🎨",name:"Canvas Print",desc:"Gallery-wrapped · Ready to hang",badge:"BEST SELLER",sizes:[{id:"c1",label:'12"×36"',price:"$79"},{id:"c2",label:'16"×48"',price:"$95"},{id:"c3",label:'20"×60"',price:"$125"}]},
+  {id:"fcanvas",icon:"🪞",name:"Framed Canvas",desc:"Solid wood frame · Premium",badge:"PREMIUM",sizes:[{id:"fc1",label:'12"×36"',price:"$119"},{id:"fc2",label:'16"×48"',price:"$149"},{id:"fc3",label:'20"×60"',price:"$189"}]},
+];
+
+// ── State ──
+let state = {
+  text: "",
+  sel: {},
+  prodId: "canvas",
+  sizeId: "c2",
+  showLocs: true,
+  popup: null,
+  toast: false,
+};
+
+function getImg(l){ const v=LETTER_DATA[l]; return v?v[state.sel[l]??0]:null; }
+function getLetters(){ return state.text.replace(/[^A-Z]/g,"").split("").filter(Boolean); }
+function getUniq(){ return [...new Set(getLetters())]; }
+function getProd(){ return PRODUCTS.find(p=>p.id===state.prodId); }
+function getSize(){ const p=getProd(); return p?.sizes.find(s=>s.id===state.sizeId)||p?.sizes[1]; }
+
+function update(fn){ fn(state); render(); }
+
+// ── Render ──
+function render(){
+  const letters = getLetters();
+  const uniq = getUniq();
+  const prod = getProd();
+  const size = getSize();
+
+  document.getElementById("app").innerHTML = `
+    <div class="topbar">
+      <div class="brand">Written <span>in</span> Earth</div>
+      <div class="ttag">NASA · Landsat · Since 1972</div>
+    </div>
+
+    <header class="hero fu">
+      <div class="eyebrow"><span class="edot"></span>The Earth wrote this. We printed it.</div>
+      <h1 class="htitle"><span class="g">Written</span><br><span class="it">in Earth</span></h1>
+      <div class="hrule"></div>
+      <div class="showcase">
+        <div class="showcase-strip">
+          ${["E","A","R","T","H"].map(l=>{
+            const img=LETTER_DATA[l]?.[0];
+            return `<div class="stile">
+              ${img?`<img src="${img.url}" alt="${l}" loading="lazy">`:`<div class="ftile" style="background:linear-gradient(135deg,${COLORS[l]},#080c14);width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:40px;color:rgba(255,255,255,.1)">${l}</div>`}
+              <div class="stile-ov"></div>
+              <div class="stile-loc">${img?.loc||""}</div>
+            </div>`;
+          }).join("")}
+        </div>
+      </div>
+    </header>
+
+    <div class="isec fu fu1">
+      <div class="sl">01 · Enter your text</div>
+      <div class="iwrap">
+        <input class="ninput" id="textInput" type="text" placeholder="A name, word, or company…"
+          value="${state.text}" maxlength="10" oninput="handleInput(this.value)">
+        <span class="cc">${state.text.length}/10</span>
+      </div>
+      <p class="ihint">Letters A–Z · Up to 10 characters · Click any tile to choose your image</p>
+    </div>
+
+    ${uniq.length ? `
+    <div class="psec fu fu2">
+      <div class="sl">02 · Choose your satellite images</div>
+      <div class="lgrid">
+        ${uniq.map(l=>{
+          const v=LETTER_DATA[l]||[]; const idx=state.sel[l]??0; const img=v[idx]; const multi=v.length>1;
+          return `<div class="lcard ${!multi?"solo":""}" onclick="openPopup('${l}')" title="${multi?v.length+' images — click to choose':img?.loc||""}">
+            ${img?`<img src="${img.url}" alt="${l}" loading="lazy">`:`<div class="ftile" style="background:linear-gradient(135deg,${COLORS[l]},#080c14)">${l}</div>`}
+            <div class="cov"></div>
+            <div class="clet">${l}</div>
+            ${multi?`<div class="cbadge">${idx+1}/${v.length}</div><div class="ctap">☰ PICK</div>`:""}
+          </div>`;
+        }).join("")}
+      </div>
+    </div>` : ""}
+
+    ${state.popup ? `
+    <div class="vback" onclick="closePopup()">
+      <div class="vpop" onclick="event.stopPropagation()">
+        <div class="vph">
+          <div class="vpt">Images for <span>"${state.popup}"</span></div>
+          <button class="vpc" onclick="closePopup()">✕</button>
+        </div>
+        <div class="vpg">
+          ${(LETTER_DATA[state.popup]||[]).map((v,i)=>`
+            <div class="vptile ${(state.sel[state.popup]??0)===i?"sel":""}" onclick="pickVariant('${state.popup}',${i})">
+              <img src="${v.url}" alt="${v.loc}" loading="lazy">
+              <div class="vtlbl">${v.loc}</div>
+              ${(state.sel[state.popup]??0)===i?`<div class="vcheck">✓</div>`:""}
+            </div>`).join("")}
+        </div>
+        <p class="vhint">Click an image to select · Click outside to close</p>
+      </div>
+    </div>` : ""}
+
+    <div class="prevsec fu fu3">
+      <div class="sl">03 · Preview your print</div>
+      <div class="prevframe">
+        ${!letters.length
+          ? `<p class="pempty">Your text will appear here, Written in Earth</p>`
+          : `<div class="ptiles">
+              ${letters.map(l=>{
+                const v=LETTER_DATA[l]||[]; const idx=state.sel[l]??0; const img=v[idx];
+                return `<div class="ptile" onclick="openPopup('${l}')" title="Click to change">
+                  ${img?`<img src="${img.url}" alt="${l}" loading="lazy">`:`<div style="width:100%;height:100%;background:linear-gradient(135deg,${COLORS[l]},#080c14);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:rgba(255,255,255,.15)">${l}</div>`}
+                  <div class="pov"></div><div class="pch">${l}</div>
+                </div>`;
+              }).join("")}
+            </div>
+            <div class="ptag">${letters.join("")} · ${size?.label} ${prod?.name}</div>`
+        }
+      </div>
+      ${letters.length ? `
+      <div class="locbar">
+        ${uniq.map(l=>{ const img=getImg(l); return img?`<div class="lchip"><strong>${l}</strong>${img.loc}</div>`:""; }).join("")}
+      </div>` : ""}
+    </div>
+
+    <div class="osec fu fu4">
+      <div class="sl">04 · Choose your format &amp; size</div>
+      <div class="ptabs">
+        ${PRODUCTS.map(p=>`
+          <div class="ptab ${state.prodId===p.id?"act":""}" onclick="setProd('${p.id}')">
+            <div class="ticon">${p.icon}</div>
+            <div class="tname">${p.name}</div>
+            <div class="tdesc">${p.desc}</div>
+            ${p.badge?`<div class="tbadge">${p.badge}</div>`:""}
+          </div>`).join("")}
+      </div>
+      <div class="spanel">
+        <div class="sgrid">
+          ${prod?.sizes.map(s=>`
+            <div class="scard ${state.sizeId===s.id?"sel":""}" onclick="setSize('${s.id}')">
+              <div class="slbl">${s.label}</div>
+              <div class="sprice">${s.price}</div>
+            </div>`).join("")}
+        </div>
+      </div>
+      <div class="loc-toggle" onclick="toggleLocs()">
+        <div class="ttrack ${state.showLocs?"on":""}"><div class="tthumb"></div></div>
+        <div class="ttext">
+          <span class="ttitle">Include location names on print</span>
+          <span class="tdescr">${state.showLocs?"Location printed beneath each letter (e.g. Shenandoah River, Virginia)":"Clean print — letters only, no location text"}</span>
+        </div>
+      </div>
+      <button class="ctabtn" ${!letters.length?"disabled":""} onclick="handleOrder()">
+        Order ${size?.label} ${prod?.name} — ${size?.price}
+      </button>
+      <p class="csub">Free shipping · Archival quality · Fulfilled by Printful · Ships in 5–7 days</p>
+    </div>
+
+    <footer class="foot">
+      <div class="fbrand">Written in Earth</div>
+      <p>Satellite imagery from NASA's public <a href="https://science.nasa.gov/gallery/your-name-in-landsat-gallery/" target="_blank">Landsat Gallery</a>.<br>
+      Jointly managed by NASA &amp; USGS · Public domain · Print fulfillment only.</p>
+    </footer>
+
+    <div class="toast ${state.toast?"show":""}">✓ Order received — check your email</div>
+  `;
+
+  // Restore input focus position
+  const inp = document.getElementById("textInput");
+  if(inp && document.activeElement !== inp){ /* don't steal focus */ }
+}
+
+function handleInput(val){
+  state.text = val.replace(/[^A-Za-z]/g,"").toUpperCase();
+  const uniq = [...new Set(state.text.split("").filter(Boolean))];
+  uniq.forEach(l=>{ if(state.sel[l]===undefined) state.sel[l]=0; });
+  render();
+  // Keep focus on input
+  setTimeout(()=>{ const i=document.getElementById("textInput"); if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);} },0);
+}
+
+function openPopup(l){ if((LETTER_DATA[l]||[]).length>1){ state.popup=l; render(); } }
+function closePopup(){ state.popup=null; render(); }
+function pickVariant(l,i){ state.sel[l]=i; state.popup=null; render(); }
+function setProd(id){ state.prodId=id; state.sizeId=PRODUCTS.find(p=>p.id===id).sizes[1].id; render(); }
+function setSize(id){ state.sizeId=id; render(); }
+function toggleLocs(){ state.showLocs=!state.showLocs; render(); }
+function handleOrder(){
+  if(!getLetters().length) return;
+  state.toast=true; render();
+  setTimeout(()=>{ state.toast=false; render(); },3000);
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
