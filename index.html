@@ -48,6 +48,7 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .ninput:focus{border-color:rgba(201,168,76,.4);box-shadow:0 0 0 3px rgba(201,168,76,.06),var(--gg);}
 .cc{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:10px;color:var(--mut);}
 .ihint{margin-top:10px;font-size:11px;color:var(--mut);text-align:center;letter-spacing:.05em;font-family:'Space Mono',monospace;}
+/* Letter picker */
 .psec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
 .lgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
 .lcard{position:relative;width:88px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;cursor:pointer;border:1px solid var(--b);transition:transform .2s,border-color .2s,box-shadow .2s;background:var(--card);flex-shrink:0;}
@@ -60,6 +61,7 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .ctap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.1);opacity:0;transition:opacity .15s;font-family:'Space Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.1em;pointer-events:none;}
 .lcard:hover .ctap{opacity:1;}
 .lcard.solo:hover .ctap{opacity:0;}
+/* Popup */
 .vback{position:fixed;inset:0;background:rgba(8,12,20,.8);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;}
 .vpop{background:var(--panel);border:1px solid var(--bhi);border-radius:8px;padding:28px;max-width:520px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,.7);}
 .vph{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
@@ -75,26 +77,27 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .vtlbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,12,20,.95) 0%,transparent 100%);padding:18px 6px 6px;font-family:'Space Mono',monospace;font-size:7px;color:var(--dim);text-align:center;line-height:1.4;}
 .vcheck{position:absolute;top:6px;right:6px;background:var(--gold);color:var(--ink);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
 .vhint{margin-top:14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);text-align:center;letter-spacing:.08em;}
+/* Canvas mockup preview */
 .prevsec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
-.mockup-wrap{position:relative;width:100%;min-height:380px;background:#0a0e16;border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
-.mockup-wall{position:absolute;inset:0;background:linear-gradient(135deg,#1a1f2e 0%,#141820 50%,#0f1318 100%);}
-.mockup-wall::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.006) 0px,rgba(255,255,255,.006) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(255,255,255,.006) 0px,rgba(255,255,255,.006) 1px,transparent 1px,transparent 60px);}
-.canvas-mockup{position:relative;z-index:2;box-shadow:0 24px 80px rgba(0,0,0,.8),0 4px 8px rgba(0,0,0,.5);transition:all .4s ease;}
-.canvas-frame{position:absolute;inset:0;border:10px solid #1e140a;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(201,168,76,.15),inset 2px 2px 8px rgba(0,0,0,.4);}
-.canvas-inner{width:100%;height:100%;display:flex;overflow:hidden;}
+.mockup-scene{width:100%;background:linear-gradient(135deg,#1a1f2e 0%,#141820 50%,#0f1318 100%);border-radius:6px;padding:48px 24px 56px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;}
+.mockup-scene::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px);}
+.canvas-wrap{position:relative;z-index:2;box-shadow:0 30px 80px rgba(0,0,0,.8),0 4px 12px rgba(0,0,0,.5);}
+.canvas-border{position:absolute;inset:0;border:12px solid #1e140a;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(201,168,76,.12),inset 3px 3px 10px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.8);}
+.canvas-content{display:flex;width:100%;height:100%;}
 .canvas-tile{flex:1;height:100%;overflow:hidden;position:relative;cursor:pointer;}
-.canvas-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s;}
-.canvas-tile:hover img{transform:scale(1.03);}
-.canvas-tile .cfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;color:rgba(255,255,255,.08);}
-.canvas-sep{width:1px;background:rgba(0,0,0,.4);flex-shrink:0;z-index:1;}
-.canvas-sizelabel{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(4,8,16,.85);border:1px solid rgba(201,168,76,.25);border-radius:2px;padding:5px 14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.12em;white-space:nowrap;z-index:4;}
-.mockup-empty{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--mut);text-align:center;position:relative;z-index:2;}
+/* KEY FIX: contain not cover so full image shows */
+.canvas-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.canvas-tile:hover{opacity:.9;}
+.canvas-div{width:1px;background:rgba(0,0,0,.5);flex-shrink:0;}
+.canvas-lbl{position:absolute;bottom:-32px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:9px;color:rgba(201,168,76,.6);letter-spacing:.12em;}
+.mockup-empty{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--mut);text-align:center;position:relative;z-index:2;padding:40px;}
 .locbar{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
 .lchip{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.11);border-radius:2px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:.05em;}
 .lchip strong{color:var(--gold);margin-right:5px;font-size:9px;}
+/* Order */
 .osec{max-width:880px;margin:0 auto;padding:0 24px 60px;}
-.ptabs{display:flex;background:var(--panel);border:1px solid var(--b);border-radius:var(--r) var(--r) 0 0;border-bottom:none;overflow:hidden;}
-.ptab{flex:1;padding:16px 8px;text-align:center;background:rgba(201,168,76,.07);position:relative;}
+.ptabs{background:var(--panel);border:1px solid var(--b);border-radius:var(--r) var(--r) 0 0;border-bottom:none;overflow:hidden;}
+.ptab{padding:16px 20px;text-align:center;background:rgba(201,168,76,.07);position:relative;}
 .ptab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);}
 .tname{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
 .tdesc{font-size:9px;color:var(--dim);letter-spacing:.04em;}
@@ -106,12 +109,11 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .scard.sel{border-color:var(--gold);background:rgba(201,168,76,.06);box-shadow:var(--gg);}
 .slbl{font-family:'Space Mono',monospace;font-size:12px;color:#fff;margin-bottom:3px;letter-spacing:.05em;}
 .ssub{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);margin-bottom:5px;letter-spacing:.05em;}
-.sprice{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--goldl);}
 .loc-toggle{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--b);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;cursor:pointer;transition:border-color .2s;}
 .loc-toggle:hover{border-color:rgba(201,168,76,.3);}
 .ttrack{width:40px;height:22px;border-radius:11px;background:rgba(120,180,255,.15);border:1px solid var(--b);position:relative;transition:background .2s;flex-shrink:0;margin-top:2px;}
 .ttrack.on{background:var(--gold);border-color:var(--gold);}
-.tthumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.3);}
+.tthumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;}
 .ttrack.on .tthumb{transform:translateX(18px);}
 .ttext{flex:1;}
 .ttitle{display:block;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
@@ -130,10 +132,52 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 </style>
 </head>
 <body>
-<div id="app"></div>
+
+<!-- Static sections that never re-render -->
+<div class="app">
+  <div class="topbar">
+    <div class="brand">Written <span>in</span> Earth</div>
+  </div>
+
+  <header class="hero fu">
+    <div class="eyebrow"><span class="edot"></span>The Earth wrote this. We printed it.</div>
+    <h1 class="htitle"><span class="g">Written</span><br><span class="it">in Earth</span></h1>
+    <div class="hrule"></div>
+    <div class="gift-section">
+      <div class="gift-title">The gift they will never forget</div>
+      <div class="gift-desc">A personalized piece of Earth, printed and delivered — perfect for anyone who means the world to you.</div>
+      <div class="gift-occasions">
+        <span>Birthdays</span><span>Anniversaries</span><span>Mothers Day</span><span>Weddings</span><span>Housewarmings</span>
+      </div>
+    </div>
+    <div class="showcase">
+      <div class="showcase-strip" id="showcase"></div>
+    </div>
+  </header>
+
+  <!-- Input — static, no re-render -->
+  <div class="isec fu fu1">
+    <div class="sl">01 &middot; Enter your text</div>
+    <div class="iwrap">
+      <input class="ninput" id="ti" type="text" placeholder="A name, word, or company..." maxlength="10" oninput="hi(this.value)">
+      <span class="cc" id="cc">0/10</span>
+    </div>
+    <p class="ihint">Letters A-Z &middot; Up to 10 characters &middot; Click any tile to choose your image</p>
+  </div>
+
+  <!-- Dynamic sections -->
+  <div id="picker-sec"></div>
+  <div id="popup-sec"></div>
+  <div id="preview-sec"></div>
+  <div id="order-sec"></div>
+
+  <footer class="foot"><div class="fbrand">Written in Earth</div></footer>
+  <div class="toast" id="toast">&#10003; Order received — check your email</div>
+</div>
+
 <script>
-var CDN = "https://pub-79d32807b6fa419c9854b8d1d4334d0b.r2.dev/LandsatImages";
-var LD = {
+var CDN="https://pub-79d32807b6fa419c9854b8d1d4334d0b.r2.dev/LandsatImages";
+var LD={
   A:[{u:CDN+"/A/a-0-hickman-kentucky.png",l:"Hickman, Kentucky"},{u:CDN+"/A/a-1-farm-island-maine.png",l:"Farm Island, Maine"},{u:CDN+"/A/a-2-guakhmaz-azerbaijan.png",l:"Lake Guakhmaz, Azerbaijan"},{u:CDN+"/A/a-3-yukon-delta-alaska.png",l:"Yukon River Delta, Alaska"},{u:CDN+"/A/a-4-lake-mjosa-norway.png",l:"Lake Mjosa, Norway"}],
   B:[{u:CDN+"/B/b-0-holla-bend-arkansas.png",l:"Holla Bend, Arkansas"},{u:CDN+"/B/b-1-humaita-brazil.png",l:"Humaita, Brazil"}],
   C:[{u:CDN+"/C/c-0-black-rock-desert-nevada.png",l:"Black Rock Desert, Nevada"},{u:CDN+"/C/c-1-deception-island.png",l:"Deception Island, Antarctica"},{u:CDN+"/C/c-2-false-river-louisiana.png",l:"False River, Louisiana"}],
@@ -158,153 +202,137 @@ var LD = {
   V:[{u:CDN+"/V/v-0-CellinaandMedunaRivers-Italy.png",l:"Cellina and Meduna Rivers, Italy"},{u:CDN+"/V/v-1-NewSouthWales-Australia.png",l:"New South Wales, Australia"},{u:CDN+"/V/v-2-PadmaRiver-Bangladesh.png",l:"Padma River, Bangladesh"},{u:CDN+"/V/v-3-Mapleton-Maine.png",l:"Mapleton, Maine"}],
   W:[{u:CDN+"/W/w-0-PonoyRiver-Russia.png",l:"Ponoy River, Russia"},{u:CDN+"/W/w-1-LaPrimavera-Columbia.png",l:"La Primavera, Colombia"}],
   X:[{u:CDN+"/X/x-0-WolstenholmeFjord-Greenland.png",l:"Wolstenholme Fjord, Greenland"},{u:CDN+"/X/x-1-DavisStrait-Greenland.png",l:"Davis Strait, Greenland"},{u:CDN+"/X/x-2-SermersooqMunicipality-Greenland.png",l:"Sermersooq, Greenland"}],
-  Y:[{u:CDN+"/Y/y-0-B%C3%ADob%C3%ADoRiver-Chile.png",l:"Biobio River, Chile"},{u:CDN+"/Y/y-1-EstuariodeVirrila-Peru.png",l:"Estuario de Virrila, Peru"},{u:CDN+"/Y/y-2-tasmanGlacier-newZealand.png",l:"Tasman Glacier, New Zealand"}],
+  Y:[{u:CDN+"/Y/y-0-BíobíoRiver-Chile.png",l:"Biobio River, Chile"},{u:CDN+"/Y/y-1-EstuariodeVirrila-Peru.png",l:"Estuario de Virrila, Peru"},{u:CDN+"/Y/y-2-tasmanGlacier-newZealand.png",l:"Tasman Glacier, New Zealand"}],
   Z:[{u:CDN+"/Z/z-0-PrimaveradoLeste-Brazil.png",l:"Primavera do Leste, Brazil"},{u:CDN+"/Z/z-1-MohammedBoudiaf-Algeria.png",l:"Mohammed Boudiaf, Algeria"}]
 };
 var COLORS={A:"#1a3a5c",B:"#2d1b4e",C:"#0d3d2e",D:"#3d1a0d",E:"#1a2d3d",F:"#2d3d1a",G:"#3d2d0d",H:"#0d1a3d",I:"#3d0d2d",J:"#1a3d2d",K:"#2d0d3d",L:"#3d1a2d",M:"#0d3d1a",N:"#1a0d3d",O:"#3d2d1a",P:"#0d2d3d",Q:"#2d3d0d",R:"#3d0d1a",S:"#1a3d0d",T:"#0d1a2d",U:"#3d1a0d",V:"#2d0d1a",W:"#1a2d0d",X:"#0d3d2d",Y:"#3d0d2d",Z:"#1a0d2d"};
-var SIZES=[{id:"c1",label:'12"x24"',sub:"Entry",price:"$95",pw:300,ph:150},{id:"c2",label:'16"x32"',sub:"Most Popular",price:"$149",pw:400,ph:200},{id:"c3",label:'24"x48"',sub:"Premium",price:"$219",pw:480,ph:240}];
-var SHOWCASE=["E","A","R","T","H"];
-var state={text:"",pos:{},sizeId:"c1",showLocs:true,popup:null,toast:false};
+var SIZES=[{id:"c1",label:'12"x24"',sub:"Entry",price:"$95"},{id:"c2",label:'16"x32"',sub:"Most Popular",price:"$149"},{id:"c3",label:'24"x48"',sub:"Premium",price:"$219"}];
 
-function letters(){return state.text.replace(/[^A-Z]/g,"").split("");}
-function getImg(letter,pos){var v=LD[letter];if(!v)return null;var idx=state.pos[letter+"_"+pos]||0;return v[idx];}
+var state={text:"",pos:{},sizeId:"c1",showLocs:true,popup:null};
+
+function letters(){return state.text.replace(/[^A-Z]/g,"").split("").filter(function(c){return c.length>0;});}
+function getImg(letter,p){var v=LD[letter];if(!v)return null;var idx=state.pos[letter+"_"+p]||0;return v[Math.min(idx,v.length-1)];}
 function getSize(){for(var i=0;i<SIZES.length;i++){if(SIZES[i].id===state.sizeId)return SIZES[i];}return SIZES[0];}
-function fb(letter,fs){return '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[letter]+',#080c14);'+(fs?'font-size:'+fs+'px':'')+'">'+letter+'</div>';}
+function fb(l){return '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';}
 
-function render(){
-  var ltrs=letters();
-  var sz=getSize();
-  var h='';
-
-  // Topbar
-  h+='<div class="topbar"><div class="brand">Written <span>in</span> Earth</div></div>';
-
-  // Hero
-  h+='<header class="hero fu">';
-  h+='<div class="eyebrow"><span class="edot"></span>The Earth wrote this. We printed it.</div>';
-  h+='<h1 class="htitle"><span class="g">Written</span><br><span class="it">in Earth</span></h1>';
-  h+='<div class="hrule"></div>';
-  h+='<div class="gift-section">';
-  h+='<div class="gift-title">The gift they will never forget</div>';
-  h+='<div class="gift-desc">A personalized piece of Earth, printed and delivered — perfect for anyone who means the world to you.</div>';
-  h+='<div class="gift-occasions"><span>Birthdays</span><span>Anniversaries</span><span>Mothers Day</span><span>Weddings</span><span>Housewarmings</span></div>';
-  h+='</div>';
-
-  // Showcase
-  h+='<div class="showcase"><div class="showcase-strip">';
-  for(var si=0;si<SHOWCASE.length;si++){
-    var sl=SHOWCASE[si];
+// Render showcase once
+function renderShowcase(){
+  var showcase=["E","A","R","T","H"];
+  var h="";
+  for(var i=0;i<showcase.length;i++){
+    var sl=showcase[i];
     var simg=LD[sl]?LD[sl][0]:null;
     h+='<div class="stile">';
     h+=simg?'<img src="'+simg.u+'" alt="'+sl+'" loading="lazy">':fb(sl);
     h+='<div class="stile-ov"></div>';
-    h+='<div class="stile-loc">'+(simg?simg.l:'')+'</div>';
+    h+='<div class="stile-loc">'+(simg?simg.l:"")+'</div>';
     h+='</div>';
   }
-  h+='</div></div></header>';
+  document.getElementById("showcase").innerHTML=h;
+}
 
-  // Input
-  h+='<div class="isec fu fu1">';
-  h+='<div class="sl">01 &middot; Enter your text</div>';
-  h+='<div class="iwrap">';
-  h+='<input class="ninput" id="ti" type="text" placeholder="A name, word, or company..." value="'+state.text+'" maxlength="10" oninput="hi(this.value)">';
-  h+='<span class="cc">'+state.text.length+'/10</span>';
-  h+='</div>';
-  h+='<p class="ihint">Letters A-Z &middot; Up to 10 characters &middot; Click any tile to choose your image</p>';
-  h+='</div>';
-
-  // Letter picker — ALL letters including duplicates
-  if(ltrs.length>0){
-    h+='<div class="psec fu fu2">';
-    h+='<div class="sl">02 &middot; Choose your satellite images</div>';
-    h+='<div class="lgrid">';
-    for(var li=0;li<ltrs.length;li++){
-      var ll=ltrs[li];
-      var lv=LD[ll]||[];
-      var lidx=state.pos[ll+"_"+li]||0;
-      var limg=lv[lidx];
-      var multi=lv.length>1;
-      h+='<div class="lcard'+(multi?'':' solo')+'" onclick="op('+li+')">';
-      h+=limg?'<img src="'+limg.u+'" alt="'+ll+'" loading="lazy">':fb(ll);
-      h+='<div class="cov"></div>';
-      h+='<div class="clet">'+ll+'</div>';
-      if(multi){h+='<div class="cbadge">'+(lidx+1)+'/'+lv.length+'</div><div class="ctap">PICK</div>';}
-      h+='</div>';
-    }
-    h+='</div></div>';
-  }
-
-  // Popup
-  if(state.popup!==null){
-    var pp=state.popup;
-    var pl=ltrs[pp];
-    var pv=LD[pl]||[];
-    var pcur=state.pos[pl+"_"+pp]||0;
-    h+='<div class="vback" onclick="cp()">';
-    h+='<div class="vpop" onclick="event.stopPropagation()">';
-    h+='<div class="vph"><div class="vpt">Choose image for <span>'+pl+'</span></div><button class="vpc" onclick="cp()">x</button></div>';
-    h+='<div class="vpg">';
-    for(var vi=0;vi<pv.length;vi++){
-      var vi2=pv[vi];
-      h+='<div class="vptile'+(pcur===vi?' sel':'')+'" onclick="pv2('+pp+','+vi+')">';
-      h+='<img src="'+vi2.u+'" alt="'+vi2.l+'" loading="lazy">';
-      h+='<div class="vtlbl">'+vi2.l+'</div>';
-      if(pcur===vi){h+='<div class="vcheck">&#10003;</div>';}
-      h+='</div>';
-    }
+// Only re-render dynamic sections, never the input
+function renderPicker(){
+  var ltrs=letters();
+  var el=document.getElementById("picker-sec");
+  if(ltrs.length===0){el.innerHTML="";return;}
+  var h='<div class="psec fu fu2"><div class="sl">02 &middot; Choose your satellite images</div><div class="lgrid">';
+  for(var i=0;i<ltrs.length;i++){
+    var l=ltrs[i];
+    var v=LD[l]||[];
+    var idx=state.pos[l+"_"+i]||0;
+    var img=v[Math.min(idx,v.length-1)];
+    var multi=v.length>1;
+    h+='<div class="lcard'+(multi?'':' solo')+'" onclick="op('+i+')">';
+    h+=img?'<img src="'+img.u+'" alt="'+l+'" loading="lazy">':fb(l);
+    h+='<div class="cov"></div><div class="clet">'+l+'</div>';
+    if(multi){h+='<div class="cbadge">'+(idx+1)+'/'+v.length+'</div><div class="ctap">PICK</div>';}
     h+='</div>';
-    h+='<p class="vhint">Click an image to select &middot; Click outside to close</p>';
-    h+='</div></div>';
   }
+  h+='</div></div>';
+  el.innerHTML=h;
+}
 
-  // Canvas mockup preview
-  h+='<div class="prevsec fu fu3">';
-  h+='<div class="sl">03 &middot; Preview your print</div>';
-  h+='<div class="mockup-wrap">';
-  h+='<div class="mockup-wall"></div>';
+function renderPopup(){
+  var el=document.getElementById("popup-sec");
+  if(state.popup===null){el.innerHTML="";return;}
+  var pp=state.popup;
+  var ltrs=letters();
+  var pl=ltrs[pp];
+  if(!pl){el.innerHTML="";return;}
+  var pv=LD[pl]||[];
+  var pcur=state.pos[pl+"_"+pp]||0;
+  var h='<div class="vback" onclick="cp()"><div class="vpop" onclick="event.stopPropagation()">';
+  h+='<div class="vph"><div class="vpt">Choose image for <span>'+pl+'</span></div><button class="vpc" onclick="cp()">x</button></div>';
+  h+='<div class="vpg">';
+  for(var i=0;i<pv.length;i++){
+    var vi=pv[i];
+    h+='<div class="vptile'+(pcur===i?' sel':'')+'" onclick="pv2('+pp+','+i+')">';
+    h+='<img src="'+vi.u+'" alt="'+vi.l+'" loading="lazy">';
+    h+='<div class="vtlbl">'+vi.l+'</div>';
+    if(pcur===i){h+='<div class="vcheck">&#10003;</div>';}
+    h+='</div>';
+  }
+  h+='</div><p class="vhint">Click an image to select &middot; Click outside to close</p>';
+  h+='</div></div>';
+  el.innerHTML=h;
+}
+
+function renderPreview(){
+  var ltrs=letters();
+  var sz=getSize();
+  var el=document.getElementById("preview-sec");
+  var h='<div class="prevsec fu fu3"><div class="sl">03 &middot; Preview your print</div>';
+  h+='<div class="mockup-scene">';
   if(ltrs.length===0){
     h+='<p class="mockup-empty">Type your text above to see your canvas preview</p>';
   } else {
-    h+='<div class="canvas-mockup" style="width:'+sz.pw+'px;height:'+sz.ph+'px">';
-    h+='<div class="canvas-frame"></div>';
-    h+='<div class="canvas-inner">';
-    for(var ci=0;ci<ltrs.length;ci++){
-      var cl=ltrs[ci];
-      var cimg=getImg(cl,ci);
-      if(ci>0){h+='<div class="canvas-sep"></div>';}
-      h+='<div class="canvas-tile" onclick="op('+ci+')" title="Click to change">';
-      if(cimg){h+='<img src="'+cimg.u+'" alt="'+cl+'">';}
-      else{h+='<div class="cfb" style="background:linear-gradient(135deg,'+COLORS[cl]+',#080c14)">'+cl+'</div>';}
+    // Canvas sized proportionally to fit the scene, max width 90% of container
+    var aspectW=2; var aspectH=1; // 2:1 ratio for all sizes
+    var maxW=Math.min(window.innerWidth-80,900);
+    var canvasW=maxW;
+    var canvasH=Math.round(canvasW/2);
+    h+='<div class="canvas-wrap" style="width:'+canvasW+'px;height:'+canvasH+'px">';
+    h+='<div class="canvas-border"></div>';
+    h+='<div class="canvas-content">';
+    for(var i=0;i<ltrs.length;i++){
+      var l=ltrs[i];
+      var img=getImg(l,i);
+      if(i>0){h+='<div class="canvas-div"></div>';}
+      h+='<div class="canvas-tile" onclick="op('+i+')" title="Click to change">';
+      if(img){h+='<img src="'+img.u+'" alt="'+l+'">';}
+      else{h+='<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';}
       h+='</div>';
     }
     h+='</div>';
-    h+='<div class="canvas-sizelabel">'+sz.label+' Canvas &middot; Written in Earth</div>';
+    h+='<div class="canvas-lbl">'+sz.label+' Canvas &middot; Written in Earth &middot; Click any tile to change image</div>';
     h+='</div>';
   }
   h+='</div>';
-
   // Location chips
   if(ltrs.length>0){
     h+='<div class="locbar">';
-    for(var lci=0;lci<ltrs.length;lci++){
-      var lcl=ltrs[lci];
-      var lcimg=getImg(lcl,lci);
-      if(lcimg){h+='<div class="lchip"><strong>'+lcl+'</strong>'+lcimg.l+'</div>';}
+    for(var ci=0;ci<ltrs.length;ci++){
+      var cimg=getImg(ltrs[ci],ci);
+      if(cimg){h+='<div class="lchip"><strong>'+ltrs[ci]+'</strong>'+cimg.l+'</div>';}
     }
     h+='</div>';
   }
   h+='</div>';
+  el.innerHTML=h;
+}
 
-  // Order
-  h+='<div class="osec fu fu4">';
-  h+='<div class="sl">04 &middot; Choose your size</div>';
+function renderOrder(){
+  var sz=getSize();
+  var ltrs=letters();
+  var h='<div class="osec fu fu4"><div class="sl">04 &middot; Choose your size</div>';
   h+='<div class="ptabs"><div class="ptab"><div class="tname">Canvas Print</div><div class="tdesc">Gallery-wrapped &middot; Ready to hang</div></div></div>';
   h+='<div class="spanel"><div class="sgrid">';
-  for(var oi=0;oi<SIZES.length;oi++){
-    var os=SIZES[oi];
-    h+='<div class="scard'+(state.sizeId===os.id?' sel':'')+'" onclick="ss('+oi+')">';
-    h+='<div class="slbl">'+os.label+' '+os.price+'</div>';
-    h+='<div class="ssub">('+os.sub+')</div>';
+  for(var i=0;i<SIZES.length;i++){
+    var s=SIZES[i];
+    h+='<div class="scard'+(state.sizeId===s.id?' sel':'')+'" onclick="ss('+i+')">';
+    h+='<div class="slbl">'+s.label+' '+s.price+'</div>';
+    h+='<div class="ssub">('+s.sub+')</div>';
     h+='</div>';
   }
   h+='</div></div>';
@@ -316,22 +344,33 @@ function render(){
   h+='<button class="ctabtn"'+(ltrs.length?'':' disabled')+' onclick="ho()">Order '+sz.label+' Canvas &mdash; '+sz.price+' &middot; Free Shipping Included</button>';
   h+='<p class="csub">Archival quality &middot; Fulfilled by Printful &middot; Ships in 5-7 days</p>';
   h+='</div>';
-
-  h+='<footer class="foot"><div class="fbrand">Written in Earth</div></footer>';
-  h+='<div class="toast'+(state.toast?' show':'')+'">&#10003; Order received &mdash; check your email</div>';
-
-  document.getElementById("app").innerHTML=h;
+  document.getElementById("order-sec").innerHTML=h;
 }
 
-function hi(v){state.text=v.replace(/[^A-Za-z]/g,"").toUpperCase();render();setTimeout(function(){var i=document.getElementById("ti");if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length);}},0);}
-function op(pos){var ltrs=letters();if(pos<ltrs.length&&(LD[ltrs[pos]]||[]).length>1){state.popup=pos;render();}}
-function cp(){state.popup=null;render();}
-function pv2(pos,idx){var ltrs=letters();if(pos<ltrs.length){state.pos[ltrs[pos]+"_"+pos]=idx;}state.popup=null;render();}
-function ss(i){state.sizeId=SIZES[i].id;render();}
-function tl(){state.showLocs=!state.showLocs;render();}
-function ho(){if(!letters().length)return;state.toast=true;render();setTimeout(function(){state.toast=false;render();},3000);}
+function renderAll(){renderPicker();renderPopup();renderPreview();renderOrder();}
 
-render();
+// Input handler — ONLY updates text state, no scroll jump
+function hi(v){
+  state.text=v.replace(/[^A-Za-z]/g,"").toUpperCase();
+  document.getElementById("cc").textContent=state.text.length+"/10";
+  renderAll();
+}
+
+function op(pos){var ltrs=letters();if(pos<ltrs.length&&(LD[ltrs[pos]]||[]).length>1){state.popup=pos;renderPopup();}}
+function cp(){state.popup=null;renderPopup();}
+function pv2(pos,idx){var ltrs=letters();if(pos<ltrs.length){state.pos[ltrs[pos]+"_"+pos]=idx;}state.popup=null;renderAll();}
+function ss(i){state.sizeId=SIZES[i].id;renderPreview();renderOrder();}
+function tl(){state.showLocs=!state.showLocs;renderOrder();}
+function ho(){
+  if(!letters().length)return;
+  var t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(function(){t.classList.remove("show");},3000);
+}
+
+// Init
+renderShowcase();
+renderAll();
 </script>
 </body>
 </html>
