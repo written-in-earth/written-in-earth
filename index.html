@@ -125,6 +125,17 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .ctabtn:hover{background:var(--goldl);transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,168,76,.28);}
 .ctabtn:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none;}
 .csub{text-align:center;margin-top:12px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;}
+.copy-summary{background:#111927;border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:18px;margin:0 24px 16px;max-width:880px;margin-left:auto;margin-right:auto;}
+.copy-summary-title{font-family:'Space Mono',monospace;font-size:9px;color:#c9a84c;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;}
+.copy-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(120,180,255,.08);}
+.copy-row:last-child{border-bottom:none;}
+.copy-ltr{font-size:14px;font-weight:700;color:#c9a84c;width:22px;font-family:'Playfair Display',serif;}
+.copy-loc{font-size:12px;color:rgba(212,227,245,.6);flex:1;padding:0 12px;}
+.copy-product{font-size:10px;color:rgba(212,227,245,.4);margin-top:10px;padding-top:10px;border-top:1px solid rgba(120,180,255,.08);font-family:'Space Mono',monospace;letter-spacing:.06em;}
+.copy-btn{width:100%;padding:15px;background:#c9a84c;color:#080c14;border:none;border-radius:4px;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:background .2s;margin-top:14px;}
+.copy-btn:hover{background:#e8c97a;}
+.copy-btn.copied{background:#1a3a5c;color:#c9a84c;}
+.copy-hint{text-align:center;font-size:10px;color:rgba(212,227,245,.3);margin-top:8px;font-family:'Space Mono',monospace;letter-spacing:.06em;padding:0 24px;}
 .foot{border-top:1px solid var(--b);padding:32px 24px;text-align:center;max-width:680px;margin:0 auto;}
 .fbrand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);font-style:italic;}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--gold);color:var(--ink);padding:12px 28px;border-radius:var(--r);font-family:'Playfair Display',serif;font-size:14px;font-weight:700;z-index:200;transition:transform .32s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;}
@@ -368,7 +379,66 @@ function renderOrder() {
   document.getElementById("order-sec").innerHTML = h;
 }
 
-function renderAll() {renderPicker();renderPopup();renderPreview();renderOrder();}
+function renderCopy() {
+  var ltrs = letters();
+  var el = document.getElementById("copy-sec");
+  if(!el || ltrs.length === 0){if(el)el.innerHTML="";return;}
+  var prod = getProduct();
+  var sz = getSize();
+
+  var h = '<div class="copy-summary">';
+  h += '<div class="copy-summary-title">Your order summary — copy and paste into Etsy notes</div>';
+  for(var i=0;i<ltrs.length;i++){
+    var l=ltrs[i];
+    var img=getImg(l,i);
+    h += '<div class="copy-row">';
+    h += '<span class="copy-ltr">'+l+'</span>';
+    h += '<span class="copy-loc">'+(img?img.l:"")+'</span>';
+    h += '</div>';
+  }
+  h += '<div class="copy-product">'+prod.name+' &middot; '+sz.label+' &middot; '+sz.price+'</div>';
+  h += '</div>';
+  h += '<button class="copy-btn" id="copyBtn" onclick="doCopy()">Copy my order details</button>';
+  h += '<p class="copy-hint">Paste into Etsy order notes when you check out</p>';
+
+  el.innerHTML = h;
+}
+
+function doCopy() {
+  var ltrs = letters();
+  var prod = getProduct();
+  var sz = getSize();
+  var lines = ["My Written in Earth Order","========================","Word: "+ltrs.join(""),""];
+  for(var i=0;i<ltrs.length;i++){
+    var l=ltrs[i];
+    var img=getImg(l,i);
+    lines.push(l+" - "+(img?img.l:"")+" (image "+(( (state.pos[l+"_"+i])||0)+1)+")");
+  }
+  lines.push("");
+  lines.push("Product: "+prod.name+" "+sz.label);
+  lines.push("Price: "+sz.price);
+  lines.push("");
+  lines.push("Customized at: written-in-earth.vercel.app");
+  var text = lines.join("\n");
+
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      var btn=document.getElementById("copyBtn");
+      if(btn){btn.textContent="Copied!";btn.classList.add("copied");setTimeout(function(){btn.textContent="Copy my order details";btn.classList.remove("copied");},2000);}
+    });
+  } else {
+    var ta=document.createElement("textarea");
+    ta.value=text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    var btn=document.getElementById("copyBtn");
+    if(btn){btn.textContent="Copied!";btn.classList.add("copied");setTimeout(function(){btn.textContent="Copy my order details";btn.classList.remove("copied");},2000);}
+  }
+}
+
+function renderAll() {renderPicker();renderPopup();renderPreview();renderOrder();renderCopy();}
 
 function hi(v) {
   state.text = v.replace(/[^A-Za-z]/g,"").toUpperCase();
@@ -431,6 +501,7 @@ document.getElementById("app").innerHTML =
   '<div id="popup-sec"></div>' +
   '<div id="preview-sec"></div>' +
   '<div id="order-sec"></div>' +
+  '<div id="copy-sec"></div>' +
   '<footer class="foot"><div class="fbrand">Written in Earth</div></footer>' +
   '<div class="toast" id="toast">&#10003; Order received — check your email</div>' +
   '</div>';
