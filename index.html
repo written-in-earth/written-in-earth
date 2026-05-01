@@ -33,12 +33,7 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .gift-desc{font-size:13px;color:var(--dim);letter-spacing:.04em;margin-bottom:16px;line-height:1.8;}
 .gift-occasions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
 .gift-occasions span{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.18);border-radius:20px;padding:6px 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;}
-.showcase{margin-top:28px;padding:0 24px 40px;}
-.showcase-strip{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.stile{position:relative;width:110px;aspect-ratio:2/3;border-radius:4px;overflow:hidden;border:1px solid rgba(201,168,76,.2);flex-shrink:0;box-shadow:0 8px 24px rgba(0,0,0,.4);}
-.stile img{width:100%;height:100%;object-fit:cover;display:block;}
-.stile-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,20,.95) 0%,rgba(8,12,20,.1) 55%,transparent 100%);pointer-events:none;}
-.stile-loc{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:6px;color:var(--gold);letter-spacing:.08em;opacity:.8;padding:0 4px;line-height:1.3;}
+
 .sl{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:18px;}
 .sl::after{content:'';flex:1;height:1px;background:var(--b);}
 .isec{max-width:640px;margin:0 auto;padding:0 24px 40px;}
@@ -211,19 +206,6 @@ function fb(l) {
   return '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';
 }
 
-function renderShowcase() {
-  var h = "";
-  for(var i=0;i<SHOWCASE.length;i++) {
-    var sl = SHOWCASE[i];
-    var simg = LD[sl] ? LD[sl][0] : null;
-    h += '<div class="stile">';
-    h += simg ? '<img src="'+simg.u+'" alt="'+sl+'" loading="lazy">' : fb(sl);
-    h += '<div class="stile-ov"></div>';
-    h += '<div class="stile-loc">'+(simg ? simg.l : "")+'</div>';
-    h += '</div>';
-  }
-  document.getElementById("showcase").innerHTML = h;
-}
 
 function renderPicker() {
   var ltrs = letters();
@@ -487,7 +469,7 @@ document.getElementById("app").innerHTML =
   '<div class="gift-desc">A personalized piece of Earth, printed and delivered — perfect for anyone who means the world to you.</div>' +
   '<div class="gift-occasions"><span>Birthdays</span><span>Anniversaries</span><span>Mothers Day</span><span>Weddings</span><span>Housewarmings</span></div>' +
   '</div>' +
-  '<div class="showcase"><div class="showcase-strip" id="showcase"></div></div>' +
+  
   '</header>' +
   '<div class="isec fu fu1">' +
   '<div class="sl">01 &middot; Enter your text</div>' +
@@ -506,7 +488,6 @@ document.getElementById("app").innerHTML =
   '<div class="toast" id="toast">&#10003; Order received — check your email</div>' +
   '</div>';
 
-renderShowcase();
 renderAll();
 </script>
 </body>
