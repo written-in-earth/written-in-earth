@@ -30,11 +30,11 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .hrule{width:72px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto;opacity:.45;}
 .gift-section{margin:0 auto;max-width:680px;padding:24px 32px;text-align:center;border-top:1px solid rgba(201,168,76,.15);border-bottom:1px solid rgba(201,168,76,.15);}
 .gift-title{font-family:'Playfair Display',serif;font-size:26px;font-style:italic;color:#fff;margin-bottom:10px;}
-.gift-desc{font-size:13px;color:var(--dim);letter-spacing:.04em;margin-bottom:16px;line-height:1.8;}
+.gift-desc{font-size:13px;color:var(--dim);letter-spacing:.04em;margin-bottom:16px;line-height:1.4;}
 .gift-occasions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
 .gift-occasions span{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.18);border-radius:20px;padding:6px 16px;font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;}
 
-.sl{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.sl{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:18px;}
 .sl::after{content:'';flex:1;height:1px;background:var(--b);}
 .isec{max-width:640px;margin:0 auto;padding:0 24px 40px;}
 .iwrap{position:relative;}
@@ -71,17 +71,37 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .vcheck{position:absolute;top:6px;right:6px;background:var(--gold);color:var(--ink);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
 .vhint{margin-top:14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);text-align:center;letter-spacing:.08em;}
 .prevsec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
-.mockup-scene{width:100%;background:linear-gradient(135deg,#1a1f2e 0%,#141820 50%,#0f1318 100%);border-radius:6px;padding:48px 24px 56px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;}
-.mockup-scene::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px);}
-.canvas-wrap{position:relative;z-index:2;box-shadow:0 30px 80px rgba(0,0,0,.8),0 4px 12px rgba(0,0,0,.5);}
-.canvas-border{position:absolute;inset:0;border:12px solid #1e140a;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(201,168,76,.12),inset 3px 3px 10px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.8);}
+.mockup-scene{width:100%;background:#888888;border-radius:8px;padding:48px 24px 60px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;}
+
+.canvas-wrap{position:relative;z-index:2;}
 .canvas-content{display:flex;width:100%;height:100%;}
 .canvas-tile{flex:1;height:100%;overflow:hidden;position:relative;cursor:pointer;}
 .canvas-tile img{width:100%;height:100%;object-fit:cover;display:block;}
-.canvas-tile:hover{opacity:.9;}
-.canvas-div{width:1px;background:rgba(0,0,0,.5);flex-shrink:0;}
-.canvas-lbl{position:absolute;bottom:-32px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:9px;color:rgba(201,168,76,.6);letter-spacing:.12em;}
+.canvas-tile:hover{opacity:.88;}
+.canvas-div{width:1px;background:rgba(0,0,0,.6);flex-shrink:0;}
+.canvas-lbl{position:absolute;bottom:-34px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:9px;color:rgba(201,168,76,.55);letter-spacing:.12em;}
 .mockup-empty{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--mut);text-align:center;position:relative;z-index:2;padding:40px;}
+.frame-canvas .canvas-wrap{
+  box-shadow:4px 6px 0 rgba(0,0,0,.4),-1px -1px 0 rgba(255,255,255,.1),0 20px 50px rgba(0,0,0,.5);
+  border-radius:0;
+  position:relative;
+}
+.frame-canvas .canvas-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,.3) 0%,transparent 6%,transparent 94%,rgba(0,0,0,.3) 100%),linear-gradient(to bottom,rgba(0,0,0,.15) 0%,transparent 6%,transparent 94%,rgba(0,0,0,.25) 100%);
+  pointer-events:none;z-index:4;
+}
+.frame-print .canvas-wrap{
+  background:#faf8f5;
+  padding:20px;
+  box-shadow:0 0 0 1px #ccc,0 20px 50px rgba(0,0,0,.4),inset 0 0 20px rgba(0,0,0,.03);
+  border-radius:1px;
+  position:relative;
+}
+.frame-digital .canvas-wrap{
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  border-radius:0;
+}
 .locbar{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
 .lchip{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.11);border-radius:2px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:.05em;}
 .lchip strong{color:var(--gold);margin-right:5px;font-size:9px;}
@@ -107,30 +127,23 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .slbl{font-family:'Space Mono',monospace;font-size:11px;color:#fff;margin-bottom:3px;letter-spacing:.05em;}
 .ssub{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);margin-bottom:5px;letter-spacing:.05em;}
 .sprice{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--goldl);}
-.loc-toggle{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--b);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;cursor:pointer;transition:border-color .2s;}
-.loc-toggle:hover{border-color:rgba(201,168,76,.3);}
-.ttrack{width:40px;height:22px;border-radius:11px;background:rgba(120,180,255,.15);border:1px solid var(--b);position:relative;transition:background .2s;flex-shrink:0;margin-top:2px;}
-.ttrack.on{background:var(--gold);border-color:var(--gold);}
-.tthumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;}
-.ttrack.on .tthumb{transform:translateX(18px);}
-.ttext{flex:1;}
-.ttitle{display:block;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
-.tdescr{display:block;font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.05em;line-height:1.6;}
+
 .ctabtn{width:100%;padding:18px;background:var(--gold);color:var(--ink);border:none;border-radius:var(--r);font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:.07em;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;}
 .ctabtn:hover{background:var(--goldl);transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,168,76,.28);}
 .ctabtn:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none;}
 .csub{text-align:center;margin-top:12px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;}
 .copy-summary{background:#111927;border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:18px;margin:0 24px 16px;max-width:880px;margin-left:auto;margin-right:auto;}
-.copy-summary-title{font-family:'Space Mono',monospace;font-size:9px;color:#c9a84c;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;}
+.copy-summary-title{font-family:'Space Mono',monospace;font-size:13px;color:#c9a84c;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;}
 .copy-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(120,180,255,.08);}
 .copy-row:last-child{border-bottom:none;}
 .copy-ltr{font-size:14px;font-weight:700;color:#c9a84c;width:22px;font-family:'Playfair Display',serif;}
 .copy-loc{font-size:12px;color:rgba(212,227,245,.6);flex:1;padding:0 12px;}
 .copy-product{font-size:10px;color:rgba(212,227,245,.4);margin-top:10px;padding-top:10px;border-top:1px solid rgba(120,180,255,.08);font-family:'Space Mono',monospace;letter-spacing:.06em;}
-.copy-btn{width:100%;padding:15px;background:#c9a84c;color:#080c14;border:none;border-radius:4px;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:background .2s;margin-top:14px;}
+.copy-btn-wrap{display:flex;flex-direction:column;align-items:center;margin-top:14px;}
+.copy-btn{padding:14px 32px;background:#c9a84c;color:#080c14;border:none;border-radius:4px;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:background .2s;}
 .copy-btn:hover{background:#e8c97a;}
 .copy-btn.copied{background:#1a3a5c;color:#c9a84c;}
-.copy-hint{text-align:center;font-size:10px;color:rgba(212,227,245,.3);margin-top:8px;font-family:'Space Mono',monospace;letter-spacing:.06em;padding:0 24px;}
+.copy-hint{text-align:center;font-size:10px;color:rgba(8,12,20,.6);margin-top:6px;font-family:'Space Mono',monospace;letter-spacing:.06em;}
 .foot{border-top:1px solid var(--b);padding:32px 24px;text-align:center;max-width:680px;margin:0 auto;}
 .fbrand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);font-style:italic;}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--gold);color:var(--ink);padding:12px 28px;border-radius:var(--r);font-family:'Playfair Display',serif;font-size:14px;font-weight:700;z-index:200;transition:transform .32s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;}
@@ -177,12 +190,12 @@ var COLORS = {A:"#1a3a5c",B:"#2d1b4e",C:"#0d3d2e",D:"#3d1a0d",E:"#1a2d3d",F:"#2d
 
 var PRODUCTS = [
   {id:"digital", name:"Digital Download", desc:"Instant download", sizes:[{id:"d1",label:"Digital Download",sub:"Any size",price:"$14.99"}]},
-  {id:"print",   name:"Fine Art Print",   desc:"Museum-grade paper", sizes:[{id:"p1",label:"8x16 in",sub:"Starter",price:"$35"},{id:"p2",label:"10x20 in",sub:"Entry",price:"$45"},{id:"p3",label:"16x32 in",sub:"Most Popular",price:"$75"},{id:"p4",label:"20x40 in",sub:"Premium",price:"$99"}]},
+  {id:"print",   name:"Fine Art Print",   desc:"Museum-grade paper", sizes:[{id:"p1",label:"8x16 in",sub:"Starter",price:"$39"},{id:"p2",label:"10x20 in",sub:"Entry",price:"$45"},{id:"p3",label:"16x32 in",sub:"Most Popular",price:"$75"},{id:"p4",label:"20x40 in",sub:"Premium",price:"$99"}]},
   {id:"canvas",  name:"Canvas Print",     desc:"Gallery-wrapped", sizes:[{id:"c1",label:"12x24 in",sub:"Entry",price:"$95"},{id:"c2",label:"16x32 in",sub:"Most Popular",price:"$149"},{id:"c3",label:"24x48 in",sub:"Premium",price:"$219"}]}
 ];
 
 var SHOWCASE = ["E","A","R","T","H"];
-var state = {text:"", pos:{}, productId:"digital", sizeId:"d1", showLocs:true, popup:null};
+var state = {text:"", pos:{}, productId:"digital", sizeId:"d1", popup:null};
 
 function letters() {
   return state.text.replace(/[^A-Z]/g,"").split("").filter(function(c){return c.length > 0;});
@@ -260,15 +273,18 @@ function renderPreview() {
   var el = document.getElementById("preview-sec");
   var maxW = Math.min(window.innerWidth - 80, 900);
   var canvasW = maxW;
-  var canvasH = Math.round(canvasW / 2);
+  var canvasH = Math.round(canvasW / 2.5);
   var h = '<div class="prevsec fu fu3"><div class="sl">03 &middot; Preview your print</div>';
-  h += '<div class="mockup-scene">';
+  var frameClass = state.productId === 'canvas' ? 'frame-canvas' : state.productId === 'print' ? 'frame-print' : 'frame-digital';
+  h += '<div class="mockup-scene '+frameClass+'">';
   if(ltrs.length === 0) {
     h += '<p class="mockup-empty">Type your text above to see your preview</p>';
   } else {
-    h += '<div class="canvas-wrap" style="width:'+canvasW+'px;height:'+canvasH+'px">';
+    var wrapStyle = state.productId==='print' ? '' : 'width:'+canvasW+'px;height:'+canvasH+'px';
+    var contentStyle = 'width:'+canvasW+'px;height:'+canvasH+'px';
+    h += '<div class="canvas-wrap" style="'+wrapStyle+'">';
     h += '<div class="canvas-border"></div>';
-    h += '<div class="canvas-content">';
+    h += '<div class="canvas-content" style="'+contentStyle+'">';
     for(var i=0;i<ltrs.length;i++) {
       var l = ltrs[i];
       var img = getImg(l,i);
@@ -279,7 +295,7 @@ function renderPreview() {
       h += '</div>';
     }
     h += '</div>';
-    h += '<div class="canvas-lbl">'+sz.label+' '+prod.name+' &middot; Written in Earth &middot; Click any tile to change</div>';
+    h += '<div class="canvas-lbl" id="preview-lbl">'+sz.label+' '+prod.name+' &middot; Written in Earth &middot; Click any tile to change</div>';
     h += '</div>';
   }
   h += '</div>';
@@ -334,11 +350,7 @@ function renderOrder() {
       h += '</div>';
     }
     h += '</div></div>';
-    h += '<div class="loc-toggle" onclick="tl()">';
-    h += '<div class="ttrack'+(state.showLocs?' on':'')+'"><div class="tthumb"></div></div>';
-    h += '<div class="ttext"><span class="ttitle">Include location names on print</span>';
-    h += '<span class="tdescr">'+(state.showLocs?'Location printed beneath each letter':'Clean print — letters only')+'</span></div>';
-    h += '</div>';
+
   }
 
   // Button
@@ -380,10 +392,17 @@ function renderCopy() {
   }
   h += '<div class="copy-product">'+prod.name+' &middot; '+sz.label+' &middot; '+sz.price+'</div>';
   h += '</div>';
-  h += '<button class="copy-btn" id="copyBtn" onclick="doCopy()">Copy my order details</button>';
-  h += '<p class="copy-hint">Paste into Etsy order notes when you check out</p>';
+  h += '<div class="copy-btn-wrap"><button class="copy-btn" id="copyBtn" onclick="doCopy()">Copy my order details<br><span style="font-size:10px;font-family:Space Mono,monospace;font-weight:400;opacity:.7;letter-spacing:.06em">Paste into Etsy order notes when you check out</span></button></div>';
 
   el.innerHTML = h;
+}
+
+function updatePreviewLabel() {
+  var lbl = document.getElementById("preview-lbl");
+  if(!lbl) return;
+  var sz = getSize();
+  var prod = getProduct();
+  lbl.textContent = sz.label + " " + prod.name + " · Written in Earth · Click any tile to change";
 }
 
 function doCopy() {
@@ -420,7 +439,13 @@ function doCopy() {
   }
 }
 
-function renderAll() {renderPicker();renderPopup();renderPreview();renderOrder();renderCopy();}
+function renderAll() {
+  renderPicker();
+  renderPopup();
+  renderPreview();
+  renderOrder();
+  renderCopy();
+}
 
 function hi(v) {
   state.text = v.replace(/[^A-Za-z]/g,"").toUpperCase();
@@ -442,13 +467,15 @@ function sp(i) {
   state.productId = PRODUCTS[i].id;
   state.sizeId = PRODUCTS[i].sizes[0].id;
   renderOrder();
+  renderCopy();
+  updatePreviewLabel();
 }
 function ss(i) {
   state.sizeId = getProduct().sizes[i].id;
-  renderPreview();
   renderOrder();
+  renderCopy();
 }
-function tl() {state.showLocs=!state.showLocs;renderOrder();}
+
 function ho() {
   if(!letters().length) return;
   var t = document.getElementById("toast");
