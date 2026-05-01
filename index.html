@@ -48,7 +48,6 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .ninput:focus{border-color:rgba(201,168,76,.4);box-shadow:0 0 0 3px rgba(201,168,76,.06),var(--gg);}
 .cc{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-family:'Space Mono',monospace;font-size:10px;color:var(--mut);}
 .ihint{margin-top:10px;font-size:11px;color:var(--mut);text-align:center;letter-spacing:.05em;font-family:'Space Mono',monospace;}
-/* Letter picker */
 .psec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
 .lgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
 .lcard{position:relative;width:88px;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;cursor:pointer;border:1px solid var(--b);transition:transform .2s,border-color .2s,box-shadow .2s;background:var(--card);flex-shrink:0;}
@@ -61,7 +60,6 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .ctap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.1);opacity:0;transition:opacity .15s;font-family:'Space Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:.1em;pointer-events:none;}
 .lcard:hover .ctap{opacity:1;}
 .lcard.solo:hover .ctap{opacity:0;}
-/* Popup */
 .vback{position:fixed;inset:0;background:rgba(8,12,20,.8);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;}
 .vpop{background:var(--panel);border:1px solid var(--bhi);border-radius:8px;padding:28px;max-width:520px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,.7);}
 .vph{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
@@ -77,7 +75,6 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .vtlbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,12,20,.95) 0%,transparent 100%);padding:18px 6px 6px;font-family:'Space Mono',monospace;font-size:7px;color:var(--dim);text-align:center;line-height:1.4;}
 .vcheck{position:absolute;top:6px;right:6px;background:var(--gold);color:var(--ink);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
 .vhint{margin-top:14px;font-family:'Space Mono',monospace;font-size:9px;color:var(--mut);text-align:center;letter-spacing:.08em;}
-/* Canvas mockup preview */
 .prevsec{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
 .mockup-scene{width:100%;background:linear-gradient(135deg,#1a1f2e 0%,#141820 50%,#0f1318 100%);border-radius:6px;padding:48px 24px 56px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;}
 .mockup-scene::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,rgba(255,255,255,.005) 0,rgba(255,255,255,.005) 1px,transparent 1px,transparent 60px);}
@@ -85,7 +82,6 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .canvas-border{position:absolute;inset:0;border:12px solid #1e140a;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(201,168,76,.12),inset 3px 3px 10px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.8);}
 .canvas-content{display:flex;width:100%;height:100%;}
 .canvas-tile{flex:1;height:100%;overflow:hidden;position:relative;cursor:pointer;}
-/* KEY FIX: contain not cover so full image shows */
 .canvas-tile img{width:100%;height:100%;object-fit:cover;display:block;}
 .canvas-tile:hover{opacity:.9;}
 .canvas-div{width:1px;background:rgba(0,0,0,.5);flex-shrink:0;}
@@ -94,21 +90,28 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 .locbar{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
 .lchip{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.11);border-radius:2px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:.05em;}
 .lchip strong{color:var(--gold);margin-right:5px;font-size:9px;}
-/* Order */
 .osec{max-width:880px;margin:0 auto;padding:0 24px 60px;}
-.ptabs{background:var(--panel);border:1px solid var(--b);border-radius:var(--r) var(--r) 0 0;border-bottom:none;overflow:hidden;}
-.ptab{padding:16px 20px;text-align:center;background:rgba(201,168,76,.07);position:relative;}
-.ptab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);}
-.tname{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
-.tdesc{font-size:9px;color:var(--dim);letter-spacing:.04em;}
+.ptabs{display:flex;background:var(--panel);border:1px solid var(--b);border-radius:var(--r) var(--r) 0 0;border-bottom:none;overflow:hidden;}
+.ptab{flex:1;padding:14px 8px;text-align:center;cursor:pointer;transition:background .18s;border-right:1px solid var(--b);position:relative;}
+.ptab:last-child{border-right:none;}
+.ptab:hover{background:rgba(201,168,76,.04);}
+.ptab.act{background:rgba(201,168,76,.07);}
+.ptab.act::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);}
+.tname{font-family:'Playfair Display',serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
+.tdesc{font-size:9px;color:var(--dim);letter-spacing:.03em;}
 .spanel{background:var(--panel);border:1px solid var(--b);border-radius:0 0 var(--r) var(--r);padding:20px;margin-bottom:14px;}
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-@media(max-width:520px){.sgrid{grid-template-columns:1fr;}}
+.digital-panel{background:var(--panel);border:1px solid var(--b);border-radius:0 0 var(--r) var(--r);padding:28px;margin-bottom:14px;text-align:center;}
+.digital-price{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--goldl);}
+.digital-sub{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);margin-top:8px;letter-spacing:.12em;}
+.digital-note{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:14px 18px;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.06em;text-align:center;line-height:1.8;}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:600px){.sgrid{grid-template-columns:repeat(2,1fr);}}
 .scard{padding:14px 10px;border:1.5px solid var(--b);border-radius:var(--r);cursor:pointer;text-align:center;transition:border-color .18s,background .18s;}
 .scard:hover{border-color:rgba(201,168,76,.3);}
 .scard.sel{border-color:var(--gold);background:rgba(201,168,76,.06);box-shadow:var(--gg);}
-.slbl{font-family:'Space Mono',monospace;font-size:12px;color:#fff;margin-bottom:3px;letter-spacing:.05em;}
+.slbl{font-family:'Space Mono',monospace;font-size:11px;color:#fff;margin-bottom:3px;letter-spacing:.05em;}
 .ssub{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);margin-bottom:5px;letter-spacing:.05em;}
+.sprice{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--goldl);}
 .loc-toggle{display:flex;align-items:flex-start;gap:14px;background:var(--panel);border:1px solid var(--b);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;cursor:pointer;transition:border-color .2s;}
 .loc-toggle:hover{border-color:rgba(201,168,76,.3);}
 .ttrack{width:40px;height:22px;border-radius:11px;background:rgba(120,180,255,.15);border:1px solid var(--b);position:relative;transition:background .2s;flex-shrink:0;margin-top:2px;}
@@ -132,52 +135,10 @@ body{background:var(--ink);color:var(--text);font-family:'DM Sans',sans-serif;}
 </style>
 </head>
 <body>
-
-<!-- Static sections that never re-render -->
-<div class="app">
-  <div class="topbar">
-    <div class="brand">Written <span>in</span> Earth</div>
-  </div>
-
-  <header class="hero fu">
-    <div class="eyebrow"><span class="edot"></span>The Earth wrote this. We printed it.</div>
-    <h1 class="htitle"><span class="g">Written</span><br><span class="it">in Earth</span></h1>
-    <div class="hrule"></div>
-    <div class="gift-section">
-      <div class="gift-title">The gift they will never forget</div>
-      <div class="gift-desc">A personalized piece of Earth, printed and delivered — perfect for anyone who means the world to you.</div>
-      <div class="gift-occasions">
-        <span>Birthdays</span><span>Anniversaries</span><span>Mothers Day</span><span>Weddings</span><span>Housewarmings</span>
-      </div>
-    </div>
-    <div class="showcase">
-      <div class="showcase-strip" id="showcase"></div>
-    </div>
-  </header>
-
-  <!-- Input — static, no re-render -->
-  <div class="isec fu fu1">
-    <div class="sl">01 &middot; Enter your text</div>
-    <div class="iwrap">
-      <input class="ninput" id="ti" type="text" placeholder="A name, word, or company..." maxlength="10" oninput="hi(this.value)">
-      <span class="cc" id="cc">0/10</span>
-    </div>
-    <p class="ihint">Letters A-Z &middot; Up to 10 characters &middot; Click any tile to choose your image</p>
-  </div>
-
-  <!-- Dynamic sections -->
-  <div id="picker-sec"></div>
-  <div id="popup-sec"></div>
-  <div id="preview-sec"></div>
-  <div id="order-sec"></div>
-
-  <footer class="foot"><div class="fbrand">Written in Earth</div></footer>
-  <div class="toast" id="toast">&#10003; Order received — check your email</div>
-</div>
-
+<div id="app"></div>
 <script>
-var CDN="https://pub-79d32807b6fa419c9854b8d1d4334d0b.r2.dev/LandsatImages";
-var LD={
+var CDN = "https://pub-79d32807b6fa419c9854b8d1d4334d0b.r2.dev/LandsatImages";
+var LD = {
   A:[{u:CDN+"/A/a-0-hickman-kentucky.png",l:"Hickman, Kentucky"},{u:CDN+"/A/a-1-farm-island-maine.png",l:"Farm Island, Maine"},{u:CDN+"/A/a-2-guakhmaz-azerbaijan.png",l:"Lake Guakhmaz, Azerbaijan"},{u:CDN+"/A/a-3-yukon-delta-alaska.png",l:"Yukon River Delta, Alaska"},{u:CDN+"/A/a-4-lake-mjosa-norway.png",l:"Lake Mjosa, Norway"}],
   B:[{u:CDN+"/B/b-0-holla-bend-arkansas.png",l:"Holla Bend, Arkansas"},{u:CDN+"/B/b-1-humaita-brazil.png",l:"Humaita, Brazil"}],
   C:[{u:CDN+"/C/c-0-black-rock-desert-nevada.png",l:"Black Rock Desert, Nevada"},{u:CDN+"/C/c-1-deception-island.png",l:"Deception Island, Antarctica"},{u:CDN+"/C/c-2-false-river-louisiana.png",l:"False River, Louisiana"}],
@@ -205,170 +166,275 @@ var LD={
   Y:[{u:CDN+"/Y/y-0-BíobíoRiver-Chile.png",l:"Biobio River, Chile"},{u:CDN+"/Y/y-1-EstuariodeVirrila-Peru.png",l:"Estuario de Virrila, Peru"},{u:CDN+"/Y/y-2-tasmanGlacier-newZealand.png",l:"Tasman Glacier, New Zealand"}],
   Z:[{u:CDN+"/Z/z-0-PrimaveradoLeste-Brazil.png",l:"Primavera do Leste, Brazil"},{u:CDN+"/Z/z-1-MohammedBoudiaf-Algeria.png",l:"Mohammed Boudiaf, Algeria"}]
 };
-var COLORS={A:"#1a3a5c",B:"#2d1b4e",C:"#0d3d2e",D:"#3d1a0d",E:"#1a2d3d",F:"#2d3d1a",G:"#3d2d0d",H:"#0d1a3d",I:"#3d0d2d",J:"#1a3d2d",K:"#2d0d3d",L:"#3d1a2d",M:"#0d3d1a",N:"#1a0d3d",O:"#3d2d1a",P:"#0d2d3d",Q:"#2d3d0d",R:"#3d0d1a",S:"#1a3d0d",T:"#0d1a2d",U:"#3d1a0d",V:"#2d0d1a",W:"#1a2d0d",X:"#0d3d2d",Y:"#3d0d2d",Z:"#1a0d2d"};
-var SIZES=[{id:"c1",label:'12"x24"',sub:"Entry",price:"$95"},{id:"c2",label:'16"x32"',sub:"Most Popular",price:"$149"},{id:"c3",label:'24"x48"',sub:"Premium",price:"$219"}];
 
-var state={text:"",pos:{},sizeId:"c1",showLocs:true,popup:null};
+var COLORS = {A:"#1a3a5c",B:"#2d1b4e",C:"#0d3d2e",D:"#3d1a0d",E:"#1a2d3d",F:"#2d3d1a",G:"#3d2d0d",H:"#0d1a3d",I:"#3d0d2d",J:"#1a3d2d",K:"#2d0d3d",L:"#3d1a2d",M:"#0d3d1a",N:"#1a0d3d",O:"#3d2d1a",P:"#0d2d3d",Q:"#2d3d0d",R:"#3d0d1a",S:"#1a3d0d",T:"#0d1a2d",U:"#3d1a0d",V:"#2d0d1a",W:"#1a2d0d",X:"#0d3d2d",Y:"#3d0d2d",Z:"#1a0d2d"};
 
-function letters(){return state.text.replace(/[^A-Z]/g,"").split("").filter(function(c){return c.length>0;});}
-function getImg(letter,p){var v=LD[letter];if(!v)return null;var idx=state.pos[letter+"_"+p]||0;return v[Math.min(idx,v.length-1)];}
-function getSize(){for(var i=0;i<SIZES.length;i++){if(SIZES[i].id===state.sizeId)return SIZES[i];}return SIZES[0];}
-function fb(l){return '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';}
+var PRODUCTS = [
+  {id:"digital", name:"Digital Download", desc:"Instant download", sizes:[{id:"d1",label:"Digital Download",sub:"Any size",price:"$14.99"}]},
+  {id:"print",   name:"Fine Art Print",   desc:"Museum-grade paper", sizes:[{id:"p1",label:"8x16 in",sub:"Starter",price:"$35"},{id:"p2",label:"10x20 in",sub:"Entry",price:"$45"},{id:"p3",label:"16x32 in",sub:"Most Popular",price:"$75"},{id:"p4",label:"20x40 in",sub:"Premium",price:"$99"}]},
+  {id:"canvas",  name:"Canvas Print",     desc:"Gallery-wrapped", sizes:[{id:"c1",label:"12x24 in",sub:"Entry",price:"$95"},{id:"c2",label:"16x32 in",sub:"Most Popular",price:"$149"},{id:"c3",label:"24x48 in",sub:"Premium",price:"$219"}]}
+];
 
-// Render showcase once
-function renderShowcase(){
-  var showcase=["E","A","R","T","H"];
-  var h="";
-  for(var i=0;i<showcase.length;i++){
-    var sl=showcase[i];
-    var simg=LD[sl]?LD[sl][0]:null;
-    h+='<div class="stile">';
-    h+=simg?'<img src="'+simg.u+'" alt="'+sl+'" loading="lazy">':fb(sl);
-    h+='<div class="stile-ov"></div>';
-    h+='<div class="stile-loc">'+(simg?simg.l:"")+'</div>';
-    h+='</div>';
-  }
-  document.getElementById("showcase").innerHTML=h;
+var SHOWCASE = ["E","A","R","T","H"];
+var state = {text:"", pos:{}, productId:"digital", sizeId:"d1", showLocs:true, popup:null};
+
+function letters() {
+  return state.text.replace(/[^A-Z]/g,"").split("").filter(function(c){return c.length > 0;});
+}
+function getProduct() {
+  for(var i=0;i<PRODUCTS.length;i++){if(PRODUCTS[i].id===state.productId)return PRODUCTS[i];}
+  return PRODUCTS[0];
+}
+function getSize() {
+  var p = getProduct();
+  for(var i=0;i<p.sizes.length;i++){if(p.sizes[i].id===state.sizeId)return p.sizes[i];}
+  return p.sizes[0];
+}
+function getImg(letter, pos) {
+  var v = LD[letter];
+  if(!v) return null;
+  var idx = state.pos[letter+"_"+pos] || 0;
+  return v[Math.min(idx, v.length-1)];
+}
+function fb(l) {
+  return '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';
 }
 
-// Only re-render dynamic sections, never the input
-function renderPicker(){
-  var ltrs=letters();
-  var el=document.getElementById("picker-sec");
-  if(ltrs.length===0){el.innerHTML="";return;}
-  var h='<div class="psec fu fu2"><div class="sl">02 &middot; Choose your satellite images</div><div class="lgrid">';
-  for(var i=0;i<ltrs.length;i++){
-    var l=ltrs[i];
-    var v=LD[l]||[];
-    var idx=state.pos[l+"_"+i]||0;
-    var img=v[Math.min(idx,v.length-1)];
-    var multi=v.length>1;
-    h+='<div class="lcard'+(multi?'':' solo')+'" onclick="op('+i+')">';
-    h+=img?'<img src="'+img.u+'" alt="'+l+'" loading="lazy">':fb(l);
-    h+='<div class="cov"></div><div class="clet">'+l+'</div>';
-    if(multi){h+='<div class="cbadge">'+(idx+1)+'/'+v.length+'</div><div class="ctap">PICK</div>';}
-    h+='</div>';
+function renderShowcase() {
+  var h = "";
+  for(var i=0;i<SHOWCASE.length;i++) {
+    var sl = SHOWCASE[i];
+    var simg = LD[sl] ? LD[sl][0] : null;
+    h += '<div class="stile">';
+    h += simg ? '<img src="'+simg.u+'" alt="'+sl+'" loading="lazy">' : fb(sl);
+    h += '<div class="stile-ov"></div>';
+    h += '<div class="stile-loc">'+(simg ? simg.l : "")+'</div>';
+    h += '</div>';
   }
-  h+='</div></div>';
-  el.innerHTML=h;
+  document.getElementById("showcase").innerHTML = h;
 }
 
-function renderPopup(){
-  var el=document.getElementById("popup-sec");
-  if(state.popup===null){el.innerHTML="";return;}
-  var pp=state.popup;
-  var ltrs=letters();
-  var pl=ltrs[pp];
+function renderPicker() {
+  var ltrs = letters();
+  var el = document.getElementById("picker-sec");
+  if(ltrs.length === 0){el.innerHTML="";return;}
+  var h = '<div class="psec fu fu2"><div class="sl">02 &middot; Choose your satellite images</div><div class="lgrid">';
+  for(var i=0;i<ltrs.length;i++) {
+    var l = ltrs[i];
+    var v = LD[l] || [];
+    var idx = state.pos[l+"_"+i] || 0;
+    var img = v[Math.min(idx,v.length-1)];
+    var multi = v.length > 1;
+    h += '<div class="lcard'+(multi?'':' solo')+'" onclick="op('+i+')">';
+    h += img ? '<img src="'+img.u+'" alt="'+l+'" loading="lazy">' : fb(l);
+    h += '<div class="cov"></div><div class="clet">'+l+'</div>';
+    if(multi){h += '<div class="cbadge">'+(idx+1)+'/'+v.length+'</div><div class="ctap">PICK</div>';}
+    h += '</div>';
+  }
+  h += '</div></div>';
+  el.innerHTML = h;
+}
+
+function renderPopup() {
+  var el = document.getElementById("popup-sec");
+  if(state.popup === null){el.innerHTML="";return;}
+  var pp = state.popup;
+  var ltrs = letters();
+  var pl = ltrs[pp];
   if(!pl){el.innerHTML="";return;}
-  var pv=LD[pl]||[];
-  var pcur=state.pos[pl+"_"+pp]||0;
-  var h='<div class="vback" onclick="cp()"><div class="vpop" onclick="event.stopPropagation()">';
-  h+='<div class="vph"><div class="vpt">Choose image for <span>'+pl+'</span></div><button class="vpc" onclick="cp()">x</button></div>';
-  h+='<div class="vpg">';
-  for(var i=0;i<pv.length;i++){
-    var vi=pv[i];
-    h+='<div class="vptile'+(pcur===i?' sel':'')+'" onclick="pv2('+pp+','+i+')">';
-    h+='<img src="'+vi.u+'" alt="'+vi.l+'" loading="lazy">';
-    h+='<div class="vtlbl">'+vi.l+'</div>';
-    if(pcur===i){h+='<div class="vcheck">&#10003;</div>';}
-    h+='</div>';
+  var pv = LD[pl] || [];
+  var pcur = state.pos[pl+"_"+pp] || 0;
+  var h = '<div class="vback" onclick="cp()"><div class="vpop" onclick="event.stopPropagation()">';
+  h += '<div class="vph"><div class="vpt">Choose image for <span>'+pl+'</span></div><button class="vpc" onclick="cp()">x</button></div>';
+  h += '<div class="vpg">';
+  for(var i=0;i<pv.length;i++) {
+    var vi = pv[i];
+    h += '<div class="vptile'+(pcur===i?' sel':'')+'" onclick="pv2('+pp+','+i+')">';
+    h += '<img src="'+vi.u+'" alt="'+vi.l+'" loading="lazy">';
+    h += '<div class="vtlbl">'+vi.l+'</div>';
+    if(pcur===i){h += '<div class="vcheck">&#10003;</div>';}
+    h += '</div>';
   }
-  h+='</div><p class="vhint">Click an image to select &middot; Click outside to close</p>';
-  h+='</div></div>';
-  el.innerHTML=h;
+  h += '</div><p class="vhint">Click an image to select &middot; Click outside to close</p>';
+  h += '</div></div>';
+  el.innerHTML = h;
 }
 
-function renderPreview(){
-  var ltrs=letters();
-  var sz=getSize();
-  var el=document.getElementById("preview-sec");
-  var h='<div class="prevsec fu fu3"><div class="sl">03 &middot; Preview your print</div>';
-  h+='<div class="mockup-scene">';
-  if(ltrs.length===0){
-    h+='<p class="mockup-empty">Type your text above to see your canvas preview</p>';
+function renderPreview() {
+  var ltrs = letters();
+  var sz = getSize();
+  var prod = getProduct();
+  var el = document.getElementById("preview-sec");
+  var maxW = Math.min(window.innerWidth - 80, 900);
+  var canvasW = maxW;
+  var canvasH = Math.round(canvasW / 2);
+  var h = '<div class="prevsec fu fu3"><div class="sl">03 &middot; Preview your print</div>';
+  h += '<div class="mockup-scene">';
+  if(ltrs.length === 0) {
+    h += '<p class="mockup-empty">Type your text above to see your preview</p>';
   } else {
-    // Canvas sized proportionally to fit the scene, max width 90% of container
-    var aspectW=2; var aspectH=1; // 2:1 ratio for all sizes
-    var maxW=Math.min(window.innerWidth-80,900);
-    var canvasW=maxW;
-    var canvasH=Math.round(canvasW/2);
-    h+='<div class="canvas-wrap" style="width:'+canvasW+'px;height:'+canvasH+'px">';
-    h+='<div class="canvas-border"></div>';
-    h+='<div class="canvas-content">';
-    for(var i=0;i<ltrs.length;i++){
-      var l=ltrs[i];
-      var img=getImg(l,i);
-      if(i>0){h+='<div class="canvas-div"></div>';}
-      h+='<div class="canvas-tile" onclick="op('+i+')" title="Click to change">';
-      if(img){h+='<img src="'+img.u+'" alt="'+l+'">';}
-      else{h+='<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';}
-      h+='</div>';
+    h += '<div class="canvas-wrap" style="width:'+canvasW+'px;height:'+canvasH+'px">';
+    h += '<div class="canvas-border"></div>';
+    h += '<div class="canvas-content">';
+    for(var i=0;i<ltrs.length;i++) {
+      var l = ltrs[i];
+      var img = getImg(l,i);
+      if(i>0){h += '<div class="canvas-div"></div>';}
+      h += '<div class="canvas-tile" onclick="op('+i+')" title="Click to change">';
+      if(img){h += '<img src="'+img.u+'" alt="'+l+'">';}
+      else{h += '<div class="ftile" style="background:linear-gradient(135deg,'+COLORS[l]+',#080c14)">'+l+'</div>';}
+      h += '</div>';
     }
-    h+='</div>';
-    h+='<div class="canvas-lbl">'+sz.label+' Canvas &middot; Written in Earth &middot; Click any tile to change image</div>';
-    h+='</div>';
+    h += '</div>';
+    h += '<div class="canvas-lbl">'+sz.label+' '+prod.name+' &middot; Written in Earth &middot; Click any tile to change</div>';
+    h += '</div>';
   }
-  h+='</div>';
-  // Location chips
-  if(ltrs.length>0){
-    h+='<div class="locbar">';
-    for(var ci=0;ci<ltrs.length;ci++){
-      var cimg=getImg(ltrs[ci],ci);
-      if(cimg){h+='<div class="lchip"><strong>'+ltrs[ci]+'</strong>'+cimg.l+'</div>';}
+  h += '</div>';
+  if(ltrs.length > 0) {
+    h += '<div class="locbar">';
+    for(var ci=0;ci<ltrs.length;ci++) {
+      var cimg = getImg(ltrs[ci],ci);
+      if(cimg){h += '<div class="lchip"><strong>'+ltrs[ci]+'</strong>'+cimg.l+'</div>';}
     }
-    h+='</div>';
+    h += '</div>';
   }
-  h+='</div>';
-  el.innerHTML=h;
+  h += '</div>';
+  el.innerHTML = h;
 }
 
-function renderOrder(){
-  var sz=getSize();
-  var ltrs=letters();
-  var h='<div class="osec fu fu4"><div class="sl">04 &middot; Choose your size</div>';
-  h+='<div class="ptabs"><div class="ptab"><div class="tname">Canvas Print</div><div class="tdesc">Gallery-wrapped &middot; Ready to hang</div></div></div>';
-  h+='<div class="spanel"><div class="sgrid">';
-  for(var i=0;i<SIZES.length;i++){
-    var s=SIZES[i];
-    h+='<div class="scard'+(state.sizeId===s.id?' sel':'')+'" onclick="ss('+i+')">';
-    h+='<div class="slbl">'+s.label+' '+s.price+'</div>';
-    h+='<div class="ssub">('+s.sub+')</div>';
-    h+='</div>';
+function renderOrder() {
+  var sz = getSize();
+  var prod = getProduct();
+  var ltrs = letters();
+  var isDigital = state.productId === "digital";
+  var isPrint   = state.productId === "print";
+  var isCanvas  = state.productId === "canvas";
+
+  var h = '<div class="osec fu fu4"><div class="sl">04 &middot; Choose your format &amp; size</div>';
+
+  // Tabs
+  h += '<div class="ptabs">';
+  for(var pi=0;pi<PRODUCTS.length;pi++) {
+    var p = PRODUCTS[pi];
+    h += '<div class="ptab'+(state.productId===p.id?' act':'')+'" onclick="sp('+pi+')">';
+    h += '<div class="tname">'+p.name+'</div>';
+    h += '<div class="tdesc">'+p.desc+'</div>';
+    h += '</div>';
   }
-  h+='</div></div>';
-  h+='<div class="loc-toggle" onclick="tl()">';
-  h+='<div class="ttrack'+(state.showLocs?' on':'')+'"><div class="tthumb"></div></div>';
-  h+='<div class="ttext"><span class="ttitle">Include location names on print</span>';
-  h+='<span class="tdescr">'+(state.showLocs?'Location printed beneath each letter':'Clean print — letters only')+'</span></div>';
-  h+='</div>';
-  h+='<button class="ctabtn"'+(ltrs.length?'':' disabled')+' onclick="ho()">Order '+sz.label+' Canvas &mdash; '+sz.price+' &middot; Free Shipping Included</button>';
-  h+='<p class="csub">Archival quality &middot; Fulfilled by Printful &middot; Ships in 5-7 days</p>';
-  h+='</div>';
-  document.getElementById("order-sec").innerHTML=h;
+  h += '</div>';
+
+  // Panel
+  if(isDigital) {
+    h += '<div class="digital-panel">';
+    h += '<div class="digital-price">$14.99</div>';
+    h += '<div class="digital-sub">ANY SIZE &middot; INSTANT DOWNLOAD</div>';
+    h += '</div>';
+    h += '<div class="digital-note">High resolution PNG &middot; Instant download after purchase &middot; Print at any local shop</div>';
+  } else {
+    h += '<div class="spanel"><div class="sgrid">';
+    for(var si=0;si<prod.sizes.length;si++) {
+      var s = prod.sizes[si];
+      h += '<div class="scard'+(state.sizeId===s.id?' sel':'')+'" onclick="ss('+si+')">';
+      h += '<div class="slbl">'+s.label+'</div>';
+      h += '<div class="ssub">('+s.sub+')</div>';
+      h += '<div class="sprice">'+s.price+'</div>';
+      h += '</div>';
+    }
+    h += '</div></div>';
+    h += '<div class="loc-toggle" onclick="tl()">';
+    h += '<div class="ttrack'+(state.showLocs?' on':'')+'"><div class="tthumb"></div></div>';
+    h += '<div class="ttext"><span class="ttitle">Include location names on print</span>';
+    h += '<span class="tdescr">'+(state.showLocs?'Location printed beneath each letter':'Clean print — letters only')+'</span></div>';
+    h += '</div>';
+  }
+
+  // Button
+  var btnText = "";
+  var subText = "";
+  if(isDigital) {
+    btnText = "Get Digital Download &mdash; $14.99 &middot; Instant Delivery";
+    subText = "High-res PNG &middot; Print anywhere &middot; Instant download";
+  } else if(isPrint) {
+    btnText = "Order "+sz.label+" Fine Art Print &mdash; "+sz.price+" &middot; Free Shipping";
+    subText = "Museum-grade paper &middot; Fulfilled by Prodigi &middot; Ships in 3-5 days";
+  } else {
+    btnText = "Order "+sz.label+" Canvas Print &mdash; "+sz.price+" &middot; Free Shipping";
+    subText = "Gallery-wrapped &middot; Fulfilled by Printful &middot; Ships in 5-7 days";
+  }
+
+  h += '<button class="ctabtn"'+(ltrs.length?'':' disabled')+' onclick="ho()">'+btnText+'</button>';
+  h += '<p class="csub">'+subText+'</p>';
+  h += '</div>';
+  document.getElementById("order-sec").innerHTML = h;
 }
 
-function renderAll(){renderPicker();renderPopup();renderPreview();renderOrder();}
+function renderAll() {renderPicker();renderPopup();renderPreview();renderOrder();}
 
-// Input handler — ONLY updates text state, no scroll jump
-function hi(v){
-  state.text=v.replace(/[^A-Za-z]/g,"").toUpperCase();
-  document.getElementById("cc").textContent=state.text.length+"/10";
+function hi(v) {
+  state.text = v.replace(/[^A-Za-z]/g,"").toUpperCase();
+  document.getElementById("cc").textContent = state.text.length+"/10";
   renderAll();
 }
-
-function op(pos){var ltrs=letters();if(pos<ltrs.length&&(LD[ltrs[pos]]||[]).length>1){state.popup=pos;renderPopup();}}
-function cp(){state.popup=null;renderPopup();}
-function pv2(pos,idx){var ltrs=letters();if(pos<ltrs.length){state.pos[ltrs[pos]+"_"+pos]=idx;}state.popup=null;renderAll();}
-function ss(i){state.sizeId=SIZES[i].id;renderPreview();renderOrder();}
-function tl(){state.showLocs=!state.showLocs;renderOrder();}
-function ho(){
-  if(!letters().length)return;
-  var t=document.getElementById("toast");
+function op(pos) {
+  var ltrs = letters();
+  if(pos < ltrs.length && (LD[ltrs[pos]]||[]).length > 1){state.popup=pos;renderPopup();}
+}
+function cp() {state.popup=null;renderPopup();}
+function pv2(pos,idx) {
+  var ltrs = letters();
+  if(pos < ltrs.length){state.pos[ltrs[pos]+"_"+pos]=idx;}
+  state.popup=null;
+  renderAll();
+}
+function sp(i) {
+  state.productId = PRODUCTS[i].id;
+  state.sizeId = PRODUCTS[i].sizes[0].id;
+  renderOrder();
+}
+function ss(i) {
+  state.sizeId = getProduct().sizes[i].id;
+  renderPreview();
+  renderOrder();
+}
+function tl() {state.showLocs=!state.showLocs;renderOrder();}
+function ho() {
+  if(!letters().length) return;
+  var t = document.getElementById("toast");
   t.classList.add("show");
   setTimeout(function(){t.classList.remove("show");},3000);
 }
 
-// Init
+// Build static HTML
+document.getElementById("app").innerHTML =
+  '<div class="app">' +
+  '<div class="topbar"><div class="brand">Written <span>in</span> Earth</div></div>' +
+  '<header class="hero fu">' +
+  '<div class="eyebrow"><span class="edot"></span>The Earth wrote this. We printed it.</div>' +
+  '<h1 class="htitle"><span class="g">Written</span><br><span class="it">in Earth</span></h1>' +
+  '<div class="hrule"></div>' +
+  '<div class="gift-section">' +
+  '<div class="gift-title">The gift they will never forget</div>' +
+  '<div class="gift-desc">A personalized piece of Earth, printed and delivered — perfect for anyone who means the world to you.</div>' +
+  '<div class="gift-occasions"><span>Birthdays</span><span>Anniversaries</span><span>Mothers Day</span><span>Weddings</span><span>Housewarmings</span></div>' +
+  '</div>' +
+  '<div class="showcase"><div class="showcase-strip" id="showcase"></div></div>' +
+  '</header>' +
+  '<div class="isec fu fu1">' +
+  '<div class="sl">01 &middot; Enter your text</div>' +
+  '<div class="iwrap">' +
+  '<input class="ninput" id="ti" type="text" placeholder="A name, word, or company..." maxlength="10" oninput="hi(this.value)">' +
+  '<span class="cc" id="cc">0/10</span>' +
+  '</div>' +
+  '<p class="ihint">Letters A-Z &middot; Up to 10 characters &middot; Click any tile to choose your image</p>' +
+  '</div>' +
+  '<div id="picker-sec"></div>' +
+  '<div id="popup-sec"></div>' +
+  '<div id="preview-sec"></div>' +
+  '<div id="order-sec"></div>' +
+  '<footer class="foot"><div class="fbrand">Written in Earth</div></footer>' +
+  '<div class="toast" id="toast">&#10003; Order received — check your email</div>' +
+  '</div>';
+
 renderShowcase();
 renderAll();
 </script>
